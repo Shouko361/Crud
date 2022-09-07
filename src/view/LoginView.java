@@ -18,6 +18,7 @@ public class LoginView extends javax.swing.JFrame {
      */
     public LoginView() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -37,7 +38,7 @@ public class LoginView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 0, 0));
-        setLocation(new java.awt.Point(30, 60));
+        setLocation(new java.awt.Point(0, 0));
 
         EmailLabel.setText("Email:");
 
@@ -110,7 +111,7 @@ public class LoginView extends javax.swing.JFrame {
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
         
         if(TextEmail.getText().trim().equals("") || TextPass.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos!","Alerta!",JOptionPane.INFORMATION_MESSAGE);
         }else{
             System.out.println("Email Digitado: "+TextEmail.getText()+"\n"+"Senha Digitada:"+TextPass.getText());
         }
