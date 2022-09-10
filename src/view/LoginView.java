@@ -1,6 +1,8 @@
 package view;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
+import model.dao.UsuarioDAO;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -30,29 +32,34 @@ public class LoginView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        EmailLabel = new javax.swing.JLabel();
-        PassLabel = new javax.swing.JLabel();
-        TextEmail = new javax.swing.JTextField();
-        TextPass = new javax.swing.JPasswordField();
+        EmaiLoginlLabel = new javax.swing.JLabel();
+        PassLoginLabel = new javax.swing.JLabel();
+        EmailLoginText = new javax.swing.JTextField();
+        PassLoginText = new javax.swing.JPasswordField();
         LoginButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 0, 0));
         setLocation(new java.awt.Point(0, 0));
 
-        EmailLabel.setText("Email:");
+        EmaiLoginlLabel.setText("Email:");
 
-        PassLabel.setText("Senha:");
+        PassLoginLabel.setText("Senha:");
 
-        TextEmail.addActionListener(new java.awt.event.ActionListener() {
+        EmailLoginText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextEmailActionPerformed(evt);
+                EmailLoginTextActionPerformed(evt);
             }
         });
 
-        TextPass.addActionListener(new java.awt.event.ActionListener() {
+        PassLoginText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextPassActionPerformed(evt);
+                PassLoginTextActionPerformed(evt);
+            }
+        });
+        PassLoginText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                PassLoginTextKeyPressed(evt);
             }
         });
 
@@ -68,30 +75,30 @@ public class LoginView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
+                .addGap(85, 85, 85)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(EmailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(EmaiLoginlLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
-                        .addComponent(TextEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(EmailLoginText, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(PassLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(PassLoginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
-                        .addComponent(TextPass, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(PassLoginText, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(LoginButton))
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(EmailLabel)
-                    .addComponent(TextEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(EmaiLoginlLabel)
+                    .addComponent(EmailLoginText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PassLabel)
-                    .addComponent(TextPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PassLoginLabel)
+                    .addComponent(PassLoginText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(LoginButton)
                 .addContainerGap(30, Short.MAX_VALUE))
@@ -100,22 +107,51 @@ public class LoginView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TextEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextEmailActionPerformed
+    private void EmailLoginTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailLoginTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextEmailActionPerformed
+    }//GEN-LAST:event_EmailLoginTextActionPerformed
 
-    private void TextPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextPassActionPerformed
+    private void PassLoginTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PassLoginTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextPassActionPerformed
+    }//GEN-LAST:event_PassLoginTextActionPerformed
 
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
         
-        if(TextEmail.getText().trim().equals("") || TextPass.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(null, "Preencha todos os campos!","Alerta!",JOptionPane.INFORMATION_MESSAGE);
+        UsuarioDAO userDAO = new UsuarioDAO();
+        
+        if(userDAO.checkLogin(EmailLoginText.getText(), PassLoginText.getText())){
+            
+            new CadastroView().setVisible(true);
+            this.dispose();
+            
         }else{
-            System.out.println("Email Digitado: "+TextEmail.getText()+"\n"+"Senha Digitada:"+TextPass.getText());
+            
+            JOptionPane.showMessageDialog(null, "Dados incorretos!");
+            
         }
+        
     }//GEN-LAST:event_LoginButtonActionPerformed
+
+    private void PassLoginTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PassLoginTextKeyPressed
+        
+        UsuarioDAO userDAO = new UsuarioDAO();
+        
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            
+            if(userDAO.checkLogin(EmailLoginText.getText(), PassLoginText.getText())){
+            
+                new CadastroView().setVisible(true);
+                this.dispose();
+
+            }else{
+
+                JOptionPane.showMessageDialog(null, "Dados incorretos!");
+
+            }
+            
+        }
+        
+    }//GEN-LAST:event_PassLoginTextKeyPressed
 
     /**
      * @param args the command line arguments
@@ -154,10 +190,10 @@ public class LoginView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel EmailLabel;
+    private javax.swing.JLabel EmaiLoginlLabel;
+    private javax.swing.JTextField EmailLoginText;
     private javax.swing.JButton LoginButton;
-    private javax.swing.JLabel PassLabel;
-    private javax.swing.JTextField TextEmail;
-    private javax.swing.JPasswordField TextPass;
+    private javax.swing.JLabel PassLoginLabel;
+    private javax.swing.JPasswordField PassLoginText;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,27 +1,33 @@
 package view;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import model.bean.Departamento;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.bean.Produto;
+import model.bean.Usuario;
+import model.dao.ProdutoDAO;
+import model.dao.UsuarioDAO;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author shouko3613
  */
 public class CadastroView extends javax.swing.JFrame {
 
-    ArrayList<Departamento> ListDep;
-    
     /**
      * Creates new form CadView
      */
     public CadastroView() {
         initComponents();
-        ListaDep = new ArrayList();
+        setLocationRelativeTo(null);
+        readProdTable();
+        readUserTable();
+        // ListaDep = new ArrayList();
     }
 
     /**
@@ -34,61 +40,52 @@ public class CadastroView extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        DepTable = new javax.swing.JTable();
-        jPanel4 = new javax.swing.JPanel();
-        IdDepLabel = new javax.swing.JLabel();
-        IdDepText = new javax.swing.JTextField();
-        NameDepLabel = new javax.swing.JLabel();
-        NameDepText = new javax.swing.JTextField();
-        SaveButton = new javax.swing.JButton();
-        CancelButton = new javax.swing.JButton();
-        NovoDepButton = new javax.swing.JButton();
-        EditarDepButton = new javax.swing.JButton();
-        DeleteDepButton = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        FuncTable = new javax.swing.JTable();
-        jPanel7 = new javax.swing.JPanel();
-        IdFuncLabel = new javax.swing.JLabel();
-        IdFuncText = new javax.swing.JTextField();
-        NameFuncLabel = new javax.swing.JLabel();
-        NameFuncText = new javax.swing.JTextField();
-        SalvarFuncButton = new javax.swing.JButton();
-        CancelFuncButton = new javax.swing.JButton();
-        NovoFuncButton = new javax.swing.JButton();
-        EditarFuncButton = new javax.swing.JButton();
-        DeleteFuncButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
+        ProdTable = new javax.swing.JTable();
         jPanel8 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
+        QtdProdLabel = new javax.swing.JLabel();
+        QtdProdText = new javax.swing.JTextField();
+        PriceProdLabel = new javax.swing.JLabel();
+        PriceProdText = new javax.swing.JTextField();
+        CancelProdButton = new javax.swing.JButton();
+        DescProdLabel = new javax.swing.JLabel();
+        DescProdText = new javax.swing.JTextField();
+        NewProdButton = new javax.swing.JButton();
+        EditProdButton = new javax.swing.JButton();
+        DelProdButton = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        UserTable = new javax.swing.JTable();
+        jPanel9 = new javax.swing.JPanel();
+        NameUserLabel = new javax.swing.JLabel();
+        NameUserText = new javax.swing.JTextField();
+        EmailUserLabel = new javax.swing.JLabel();
+        EmailUserText = new javax.swing.JTextField();
+        CancelUserButton = new javax.swing.JButton();
+        PassUserLabel = new javax.swing.JLabel();
+        PassUserText = new javax.swing.JPasswordField();
+        NewUserButton = new javax.swing.JButton();
+        EditUserButton = new javax.swing.JButton();
+        DelUserButton = new javax.swing.JButton();
+        SearchUserText = new javax.swing.JTextField();
+        SearchUserButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        DepTable.setModel(new javax.swing.table.DefaultTableModel(
+        ProdTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Nome"
+                "ID", "Descrição", "QTD", "Preço"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -99,259 +96,34 @@ public class CadastroView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(DepTable);
-        if (DepTable.getColumnModel().getColumnCount() > 0) {
-            DepTable.getColumnModel().getColumn(0).setPreferredWidth(10);
-            DepTable.getColumnModel().getColumn(1).setPreferredWidth(500);
-        }
-
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Dados"));
-
-        IdDepLabel.setText("ID:");
-
-        NameDepLabel.setText("Nome:");
-
-        SaveButton.setText("Salvar");
-
-        CancelButton.setText("Cancelar");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(IdDepLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(IdDepText, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(NameDepLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(NameDepText, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
-                .addComponent(SaveButton)
-                .addGap(49, 49, 49)
-                .addComponent(CancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(IdDepLabel)
-                    .addComponent(IdDepText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NameDepLabel)
-                    .addComponent(NameDepText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SaveButton)
-                    .addComponent(CancelButton))
-                .addContainerGap(65, Short.MAX_VALUE))
-        );
-
-        NovoDepButton.setText("Novo");
-        NovoDepButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NovoDepButtonActionPerformed(evt);
+        ProdTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ProdTableMouseClicked(evt);
             }
         });
-
-        EditarDepButton.setText("Editar");
-
-        DeleteDepButton.setText("Excluir");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 657, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addComponent(NovoDepButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74)
-                .addComponent(EditarDepButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74)
-                .addComponent(DeleteDepButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NovoDepButton)
-                    .addComponent(EditarDepButton)
-                    .addComponent(DeleteDepButton))
-                .addGap(25, 25, 25)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jTabbedPane1.addTab("Departamentos", jPanel1);
-
-        FuncTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "Nome"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane4.setViewportView(FuncTable);
-        if (FuncTable.getColumnModel().getColumnCount() > 0) {
-            FuncTable.getColumnModel().getColumn(0).setPreferredWidth(10);
-            FuncTable.getColumnModel().getColumn(1).setPreferredWidth(500);
-        }
-
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Dados"));
-
-        IdFuncLabel.setText("ID:");
-
-        NameFuncLabel.setText("Nome:");
-
-        SalvarFuncButton.setText("Salvar");
-
-        CancelFuncButton.setText("Cancelar");
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(IdFuncLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(IdFuncText, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(NameFuncLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(NameFuncText, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
-                .addComponent(SalvarFuncButton)
-                .addGap(49, 49, 49)
-                .addComponent(CancelFuncButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(IdFuncLabel)
-                    .addComponent(IdFuncText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NameFuncLabel)
-                    .addComponent(NameFuncText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SalvarFuncButton)
-                    .addComponent(CancelFuncButton))
-                .addContainerGap(65, Short.MAX_VALUE))
-        );
-
-        NovoFuncButton.setText("Novo");
-        NovoFuncButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NovoFuncButtonActionPerformed(evt);
-            }
-        });
-
-        EditarFuncButton.setText("Editar");
-
-        DeleteFuncButton.setText("Excluir");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 657, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addComponent(NovoFuncButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74)
-                .addComponent(EditarFuncButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74)
-                .addComponent(DeleteFuncButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NovoFuncButton)
-                    .addComponent(EditarFuncButton)
-                    .addComponent(DeleteFuncButton))
-                .addGap(25, 25, 25)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jTabbedPane1.addTab("Funcionarios", jPanel2);
-
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "Nome"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane5.setViewportView(jTable5);
-        if (jTable5.getColumnModel().getColumnCount() > 0) {
-            jTable5.getColumnModel().getColumn(0).setPreferredWidth(10);
-            jTable5.getColumnModel().getColumn(1).setPreferredWidth(500);
+        jScrollPane5.setViewportView(ProdTable);
+        if (ProdTable.getColumnModel().getColumnCount() > 0) {
+            ProdTable.getColumnModel().getColumn(0).setPreferredWidth(60);
+            ProdTable.getColumnModel().getColumn(1).setPreferredWidth(250);
+            ProdTable.getColumnModel().getColumn(2).setPreferredWidth(250);
+            ProdTable.getColumnModel().getColumn(3).setPreferredWidth(80);
+            ProdTable.getColumnModel().getColumn(3).setHeaderValue("Preço");
         }
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Dados"));
 
-        jLabel5.setText("ID:");
+        QtdProdLabel.setText("Qtd:");
 
-        jLabel6.setText("Nome:");
+        PriceProdLabel.setText("Preço:");
 
-        jButton11.setText("Salvar");
+        CancelProdButton.setText("Cancelar");
+        CancelProdButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelProdButtonActionPerformed(evt);
+            }
+        });
 
-        jButton12.setText("Cancelar");
+        DescProdLabel.setText("Desc.:");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -359,63 +131,76 @@ public class CadastroView extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(QtdProdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                .addComponent(QtdProdText, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(PriceProdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
-                .addComponent(jButton11)
-                .addGap(49, 49, 49)
-                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
+                .addComponent(PriceProdText, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(DescProdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(DescProdText, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(252, 252, 252)
+                .addComponent(CancelProdButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton11)
-                    .addComponent(jButton12))
-                .addContainerGap(65, Short.MAX_VALUE))
+                    .addComponent(QtdProdLabel)
+                    .addComponent(QtdProdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PriceProdLabel)
+                    .addComponent(PriceProdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DescProdLabel)
+                    .addComponent(DescProdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(CancelProdButton)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        jButton13.setText("Novo");
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
+        NewProdButton.setText("Novo");
+        NewProdButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
+                NewProdButtonActionPerformed(evt);
             }
         });
 
-        jButton14.setText("Editar");
+        EditProdButton.setText("Editar");
+        EditProdButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditProdButtonActionPerformed(evt);
+            }
+        });
 
-        jButton15.setText("Excluir");
+        DelProdButton.setText("Excluir");
+        DelProdButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DelProdButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 657, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(74, 74, 74)
-                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(NewProdButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(74, 74, 74)
-                .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(EditProdButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(74, 74, 74)
-                .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74))
+                .addComponent(DelProdButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane5)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -424,20 +209,186 @@ public class CadastroView extends javax.swing.JFrame {
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton13)
-                    .addComponent(jButton14)
-                    .addComponent(jButton15))
+                    .addComponent(NewProdButton)
+                    .addComponent(EditProdButton)
+                    .addComponent(DelProdButton))
                 .addGap(25, 25, 25)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jTabbedPane1.addTab("Produtos", jPanel3);
 
+        UserTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Nome", "Email"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        UserTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                UserTableMouseClicked(evt);
+            }
+        });
+        jScrollPane6.setViewportView(UserTable);
+        if (UserTable.getColumnModel().getColumnCount() > 0) {
+            UserTable.getColumnModel().getColumn(0).setPreferredWidth(60);
+            UserTable.getColumnModel().getColumn(1).setPreferredWidth(250);
+            UserTable.getColumnModel().getColumn(2).setPreferredWidth(250);
+        }
+
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Dados"));
+
+        NameUserLabel.setText("Nome:");
+
+        EmailUserLabel.setText("Email:");
+
+        CancelUserButton.setText("Cancelar");
+        CancelUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelUserButtonActionPerformed(evt);
+            }
+        });
+
+        PassUserLabel.setText("Senha:");
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(NameUserLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(NameUserText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(EmailUserLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)
+                        .addComponent(EmailUserText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(PassUserLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(PassUserText, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(252, 252, 252)
+                        .addComponent(CancelUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NameUserLabel)
+                    .addComponent(NameUserText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EmailUserLabel)
+                    .addComponent(EmailUserText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PassUserLabel)
+                    .addComponent(PassUserText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(CancelUserButton)
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+
+        NewUserButton.setText("Novo");
+        NewUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NewUserButtonActionPerformed(evt);
+            }
+        });
+
+        EditUserButton.setText("Editar");
+        EditUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditUserButtonActionPerformed(evt);
+            }
+        });
+
+        DelUserButton.setText("Excluir");
+        DelUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DelUserButtonActionPerformed(evt);
+            }
+        });
+
+        SearchUserText.setToolTipText("Buscar um Email");
+        SearchUserText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                SearchUserTextKeyPressed(evt);
+            }
+        });
+
+        SearchUserButton.setText("Buscar");
+        SearchUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchUserButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(NewUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(EditUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(DelUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(SearchUserText, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(SearchUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 20, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addComponent(jScrollPane6)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NewUserButton)
+                    .addComponent(EditUserButton)
+                    .addComponent(DelUserButton)
+                    .addComponent(SearchUserText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SearchUserButton))
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jTabbedPane1.addTab("Usuarios", jPanel5);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 656, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -447,18 +398,264 @@ public class CadastroView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void NovoDepButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NovoDepButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NovoDepButtonActionPerformed
+    private void SearchUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchUserButtonActionPerformed
 
-    private void NovoFuncButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NovoFuncButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NovoFuncButtonActionPerformed
+        readSearchUserTable(SearchUserText.getText());
 
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton13ActionPerformed
+    }//GEN-LAST:event_SearchUserButtonActionPerformed
 
+    private void SearchUserTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchUserTextKeyPressed
+
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+
+            readSearchUserTable(SearchUserText.getText());
+
+        }
+
+    }//GEN-LAST:event_SearchUserTextKeyPressed
+
+    private void DelUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelUserButtonActionPerformed
+
+        if (UserTable.getSelectedRow() != -1) {
+
+            //Delete Usuario
+            Usuario user = new Usuario();
+            UsuarioDAO userDao = new UsuarioDAO();
+
+            user.setId((int) UserTable.getValueAt(UserTable.getSelectedRow(), 0));
+
+            userDao.deleteUser(user);
+
+            //Limpar campos apos exclusão dos dados
+            NameUserText.setText("");
+            EmailUserText.setText("");
+            PassUserText.setText("");
+
+            //Atualiza tabela
+            readUserTable();
+
+        } else {
+
+            JOptionPane.showMessageDialog(null, "Selecione um usuario para ser excluido!");
+
+        }
+    }//GEN-LAST:event_DelUserButtonActionPerformed
+
+    private void EditUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditUserButtonActionPerformed
+
+        if (UserTable.getSelectedRow() != -1) {
+
+            //Update Usuario
+            Usuario user = new Usuario();
+            UsuarioDAO userDao = new UsuarioDAO();
+
+            user.setName(NameUserText.getText());
+            user.setEmail(EmailUserText.getText());
+            user.setId((int) UserTable.getValueAt(UserTable.getSelectedRow(), 0));
+
+            userDao.updateUser(user);
+
+            //Limpar campos apos atualização dos dados
+            NameUserText.setText("");
+            EmailUserText.setText("");
+
+            //Atualiza tabela
+            readUserTable();
+
+        }
+    }//GEN-LAST:event_EditUserButtonActionPerformed
+
+    private void NewUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewUserButtonActionPerformed
+
+        //Create Usuario
+        Usuario user = new Usuario();
+        UsuarioDAO userDao = new UsuarioDAO();
+
+        if(!NameUserText.getText().trim().isEmpty() && !EmailUserText.getText().trim().isEmpty() && !PassUserText.getText().trim().isEmpty()){
+            user.setName(NameUserText.getText());
+            user.setEmail(EmailUserText.getText());
+            user.setPassword(PassUserText.getText());
+
+            userDao.createUser(user);
+
+            //Limpar campos apos cadastro
+            NameUserText.setText("");
+            EmailUserText.setText("");
+            PassUserText.setText("");
+
+            //Adicionar novo produto a tabela
+            readUserTable();
+        } else {
+
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+
+        }
+    }//GEN-LAST:event_NewUserButtonActionPerformed
+
+    private void CancelUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelUserButtonActionPerformed
+
+        //Limpar campos para cancelar a operação
+        NameUserText.setText("");
+        EmailUserText.setText("");
+        PassUserText.setText("");
+    }//GEN-LAST:event_CancelUserButtonActionPerformed
+
+    private void UserTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UserTableMouseClicked
+        //Transfere os dados da linha para a linha
+        if (UserTable.getSelectedRow() != -1) {
+
+            NameUserText.setText(UserTable.getValueAt(UserTable.getSelectedRow(), 1).toString());
+            EmailUserText.setText(UserTable.getValueAt(UserTable.getSelectedRow(), 2).toString());
+
+        }
+    }//GEN-LAST:event_UserTableMouseClicked
+
+    private void DelProdButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelProdButtonActionPerformed
+
+        if (ProdTable.getSelectedRow() != -1) {
+
+            //Delete Produto
+            Produto product = new Produto();
+            ProdutoDAO productDao = new ProdutoDAO();
+
+            product.setId((int) ProdTable.getValueAt(ProdTable.getSelectedRow(), 0));
+
+            productDao.deleteProd(product);
+
+            //Limpar campos apos exclusão dos dados
+            DescProdText.setText("");
+            QtdProdText.setText("");
+            PriceProdText.setText("");
+
+            //Atualiza tabela
+            readProdTable();
+
+        } else {
+
+            JOptionPane.showMessageDialog(null, "Selecione um produto para ser excluido!");
+
+        }
+    }//GEN-LAST:event_DelProdButtonActionPerformed
+
+    private void EditProdButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditProdButtonActionPerformed
+
+        if (ProdTable.getSelectedRow() != -1) {
+
+            //Update Produto
+            Produto product = new Produto();
+            ProdutoDAO productDao = new ProdutoDAO();
+
+            product.setDescription(DescProdText.getText());
+            product.setQtd(Integer.parseInt(QtdProdText.getText()));
+            product.setPrice(Double.parseDouble(PriceProdText.getText()));
+            product.setId((int) ProdTable.getValueAt(ProdTable.getSelectedRow(), 0));
+
+            productDao.updateProd(product);
+
+            //Limpar campos apos atualização dos dados
+            DescProdText.setText("");
+            QtdProdText.setText("");
+            PriceProdText.setText("");
+
+            //Atualiza tabela
+            readProdTable();
+
+        }
+    }//GEN-LAST:event_EditProdButtonActionPerformed
+
+    private void NewProdButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewProdButtonActionPerformed
+
+        //Create Produto
+        Produto product = new Produto();
+        ProdutoDAO productDao = new ProdutoDAO();
+
+        product.setDescription(DescProdText.getText());
+        product.setQtd(Integer.parseInt(QtdProdText.getText()));
+        product.setPrice(Double.parseDouble(PriceProdText.getText()));
+
+        productDao.createProd(product);
+
+        //Limpar campos apos cadastro
+        DescProdText.setText("");
+        QtdProdText.setText("");
+        PriceProdText.setText("");
+
+        //Adicionar novo produto a tabela
+        readProdTable();
+    }//GEN-LAST:event_NewProdButtonActionPerformed
+
+    private void CancelProdButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelProdButtonActionPerformed
+
+        //Limpar campos para cancelar a operação
+        DescProdText.setText("");
+        QtdProdText.setText("");
+        PriceProdText.setText("");
+    }//GEN-LAST:event_CancelProdButtonActionPerformed
+
+    private void ProdTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProdTableMouseClicked
+
+        //Transfere os dados da linha para a linha
+        if (ProdTable.getSelectedRow() != -1) {
+
+            DescProdText.setText(ProdTable.getValueAt(ProdTable.getSelectedRow(), 1).toString());
+            QtdProdText.setText(ProdTable.getValueAt(ProdTable.getSelectedRow(), 2).toString());
+            PriceProdText.setText(ProdTable.getValueAt(ProdTable.getSelectedRow(), 3).toString());
+
+        }
+    }//GEN-LAST:event_ProdTableMouseClicked
+
+    public void readProdTable() {
+
+        DefaultTableModel modelo = (DefaultTableModel) ProdTable.getModel();
+        modelo.setNumRows(0);
+
+        ProdutoDAO productDao = new ProdutoDAO();
+
+        productDao.listProd().forEach(p -> {
+            modelo.addRow(new Object[]{
+                p.getId(),
+                p.getDescription(),
+                p.getQtd(),
+                p.getPrice()
+            });
+        });
+
+    }
+
+    public void readUserTable() {
+
+        DefaultTableModel modelo = (DefaultTableModel) UserTable.getModel();
+        modelo.setNumRows(0);
+
+        UsuarioDAO userDao = new UsuarioDAO();
+
+        userDao.listUser().forEach(u -> {
+            modelo.addRow(new Object[]{
+                u.getId(),
+                u.getName(),
+                u.getEmail()
+            });
+        });
+
+    }
+
+    public void readSearchUserTable(String email) {
+
+        DefaultTableModel modelo = (DefaultTableModel) UserTable.getModel();
+        modelo.setNumRows(0);
+
+        UsuarioDAO userDao = new UsuarioDAO();
+
+        userDao.searchUser(email).forEach(u -> {
+            modelo.addRow(new Object[]{
+                u.getId(),
+                u.getName(),
+                u.getEmail()
+            });
+        });
+
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -496,45 +693,36 @@ public class CadastroView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton CancelButton;
-    private javax.swing.JButton CancelFuncButton;
-    private javax.swing.JButton DeleteDepButton;
-    private javax.swing.JButton DeleteFuncButton;
-    private javax.swing.JTable DepTable;
-    private javax.swing.JButton EditarDepButton;
-    private javax.swing.JButton EditarFuncButton;
-    private javax.swing.JTable FuncTable;
-    private javax.swing.JLabel IdDepLabel;
-    private javax.swing.JTextField IdDepText;
-    private javax.swing.JLabel IdFuncLabel;
-    private javax.swing.JTextField IdFuncText;
-    private javax.swing.JLabel NameDepLabel;
-    private javax.swing.JTextField NameDepText;
-    private javax.swing.JLabel NameFuncLabel;
-    private javax.swing.JTextField NameFuncText;
-    private javax.swing.JButton NovoDepButton;
-    private javax.swing.JButton NovoFuncButton;
-    private javax.swing.JButton SalvarFuncButton;
-    private javax.swing.JButton SaveButton;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton CancelProdButton;
+    private javax.swing.JButton CancelUserButton;
+    private javax.swing.JButton DelProdButton;
+    private javax.swing.JButton DelUserButton;
+    private javax.swing.JLabel DescProdLabel;
+    private javax.swing.JTextField DescProdText;
+    private javax.swing.JButton EditProdButton;
+    private javax.swing.JButton EditUserButton;
+    private javax.swing.JLabel EmailUserLabel;
+    private javax.swing.JTextField EmailUserText;
+    private javax.swing.JLabel NameUserLabel;
+    private javax.swing.JTextField NameUserText;
+    private javax.swing.JButton NewProdButton;
+    private javax.swing.JButton NewUserButton;
+    private javax.swing.JLabel PassUserLabel;
+    private javax.swing.JPasswordField PassUserText;
+    private javax.swing.JLabel PriceProdLabel;
+    private javax.swing.JTextField PriceProdText;
+    private javax.swing.JTable ProdTable;
+    private javax.swing.JLabel QtdProdLabel;
+    private javax.swing.JTextField QtdProdText;
+    private javax.swing.JButton SearchUserButton;
+    private javax.swing.JTextField SearchUserText;
+    private javax.swing.JTable UserTable;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable5;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }

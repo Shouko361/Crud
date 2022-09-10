@@ -30,21 +30,21 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
                   <Group type="102" alignment="2" attributes="0">
-                      <Component id="EmailLabel" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="EmaiLoginlLabel" min="-2" pref="50" max="-2" attributes="0"/>
                       <EmptySpace min="6" pref="6" max="6" attributes="0"/>
-                      <Component id="TextEmail" min="-2" pref="160" max="-2" attributes="0"/>
+                      <Component id="EmailLoginText" min="-2" pref="187" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="2" attributes="0">
-                      <Component id="PassLabel" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="PassLoginLabel" min="-2" pref="50" max="-2" attributes="0"/>
                       <EmptySpace min="6" pref="6" max="6" attributes="0"/>
-                      <Component id="TextPass" min="-2" pref="160" max="-2" attributes="0"/>
+                      <Component id="PassLoginText" min="-2" pref="190" max="-2" attributes="0"/>
                   </Group>
                   <Component id="LoginButton" alignment="2" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="96" max="32767" attributes="0"/>
+              <EmptySpace pref="85" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -53,13 +53,13 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="EmailLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="TextEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="EmaiLoginlLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="EmailLoginText" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="PassLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="TextPass" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="PassLoginLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="PassLoginText" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="LoginButton" min="-2" max="-2" attributes="0"/>
@@ -69,24 +69,25 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="EmailLabel">
+    <Component class="javax.swing.JLabel" name="EmaiLoginlLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Email:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="PassLabel">
+    <Component class="javax.swing.JLabel" name="PassLoginLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Senha:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="TextEmail">
+    <Component class="javax.swing.JTextField" name="EmailLoginText">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TextEmailActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EmailLoginTextActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="TextPass">
+    <Component class="javax.swing.JPasswordField" name="PassLoginText">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TextPassActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PassLoginTextActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="PassLoginTextKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="LoginButton">
