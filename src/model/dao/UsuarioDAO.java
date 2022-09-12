@@ -151,11 +151,13 @@ public class UsuarioDAO {
         ResultSet rs = null;
         boolean  status = false;
         
+        
         try {
             
-            stmt = con.prepareStatement("SELECT * FROM user WHERE email = ? and password = ?");
+            stmt = con.prepareStatement("SELECT * FROM user WHERE name = ? OR email = ? and password = ?");
             stmt.setString(1, email);
-            stmt.setString(2, pass);
+            stmt.setString(2, email);
+            stmt.setString(3, pass);
             rs = stmt.executeQuery();
             
             if(rs.next()){

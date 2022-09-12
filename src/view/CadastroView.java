@@ -2,6 +2,7 @@ package view;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.bean.Produto;
@@ -24,6 +25,7 @@ public class CadastroView extends javax.swing.JFrame {
      */
     public CadastroView() {
         initComponents();
+        setTitle("Cadastro");
         setLocationRelativeTo(null);
         readProdTable();
         readUserTable();
@@ -70,6 +72,9 @@ public class CadastroView extends javax.swing.JFrame {
         DelUserButton = new javax.swing.JButton();
         SearchUserText = new javax.swing.JTextField();
         SearchUserButton = new javax.swing.JButton();
+        AppBar = new javax.swing.JMenuBar();
+        OptionsButtonBar = new javax.swing.JMenu();
+        ExitButtonBar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -384,6 +389,23 @@ public class CadastroView extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Usuarios", jPanel5);
 
+        OptionsButtonBar.setText("Opções");
+        OptionsButtonBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        OptionsButtonBar.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        OptionsButtonBar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+
+        ExitButtonBar.setText("Sair");
+        ExitButtonBar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitButtonBarActionPerformed(evt);
+            }
+        });
+        OptionsButtonBar.add(ExitButtonBar);
+
+        AppBar.add(OptionsButtonBar);
+
+        setJMenuBar(AppBar);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -604,6 +626,11 @@ public class CadastroView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ProdTableMouseClicked
 
+    private void ExitButtonBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitButtonBarActionPerformed
+        new LoginView().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_ExitButtonBarActionPerformed
+
     public void readProdTable() {
 
         DefaultTableModel modelo = (DefaultTableModel) ProdTable.getModel();
@@ -693,6 +720,7 @@ public class CadastroView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuBar AppBar;
     private javax.swing.JButton CancelProdButton;
     private javax.swing.JButton CancelUserButton;
     private javax.swing.JButton DelProdButton;
@@ -703,10 +731,12 @@ public class CadastroView extends javax.swing.JFrame {
     private javax.swing.JButton EditUserButton;
     private javax.swing.JLabel EmailUserLabel;
     private javax.swing.JTextField EmailUserText;
+    private javax.swing.JMenuItem ExitButtonBar;
     private javax.swing.JLabel NameUserLabel;
     private javax.swing.JTextField NameUserText;
     private javax.swing.JButton NewProdButton;
     private javax.swing.JButton NewUserButton;
+    private javax.swing.JMenu OptionsButtonBar;
     private javax.swing.JLabel PassUserLabel;
     private javax.swing.JPasswordField PassUserText;
     private javax.swing.JLabel PriceProdLabel;

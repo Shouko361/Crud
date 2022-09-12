@@ -20,6 +20,7 @@ public class LoginView extends javax.swing.JFrame {
      */
     public LoginView() {
         initComponents();
+        setTitle("Login");
         setLocationRelativeTo(null);
     }
 
