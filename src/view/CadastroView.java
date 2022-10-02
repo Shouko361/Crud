@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import model.bean.Produto;
 import model.bean.Usuario;
@@ -67,6 +68,16 @@ public class CadastroView extends javax.swing.JFrame {
         CancelUserButton = new javax.swing.JButton();
         PassUserLabel = new javax.swing.JLabel();
         PassUserText = new javax.swing.JPasswordField();
+        CEPUserLabel = new javax.swing.JLabel();
+        CEPUserText = new javax.swing.JTextField();
+        CityUserLabel = new javax.swing.JLabel();
+        CityUserText = new javax.swing.JTextField();
+        UFUserLabel = new javax.swing.JLabel();
+        UFUserText = new javax.swing.JComboBox<>();
+        DistrictUserLabel = new javax.swing.JLabel();
+        DistrictUserText = new javax.swing.JTextField();
+        StreetUserLabel = new javax.swing.JLabel();
+        StreetUserText = new javax.swing.JTextField();
         NewUserButton = new javax.swing.JButton();
         EditUserButton = new javax.swing.JButton();
         DelUserButton = new javax.swing.JButton();
@@ -228,14 +239,14 @@ public class CadastroView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Nome", "Email"
+                "ID", "Nome", "Email", "CEP", "Bairro", "Rua", "Cidade", "Estado"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -253,16 +264,36 @@ public class CadastroView extends javax.swing.JFrame {
         });
         jScrollPane6.setViewportView(UserTable);
         if (UserTable.getColumnModel().getColumnCount() > 0) {
-            UserTable.getColumnModel().getColumn(0).setPreferredWidth(60);
-            UserTable.getColumnModel().getColumn(1).setPreferredWidth(250);
-            UserTable.getColumnModel().getColumn(2).setPreferredWidth(250);
+            UserTable.getColumnModel().getColumn(0).setPreferredWidth(30);
+            UserTable.getColumnModel().getColumn(1).setPreferredWidth(100);
+            UserTable.getColumnModel().getColumn(2).setPreferredWidth(100);
+            UserTable.getColumnModel().getColumn(3).setPreferredWidth(100);
+            UserTable.getColumnModel().getColumn(4).setPreferredWidth(100);
+            UserTable.getColumnModel().getColumn(5).setPreferredWidth(100);
         }
 
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Dados"));
 
         NameUserLabel.setText("Nome:");
 
+        NameUserText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                NameUserTextKeyReleased(evt);
+            }
+        });
+
         EmailUserLabel.setText("Email:");
+
+        EmailUserText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EmailUserTextActionPerformed(evt);
+            }
+        });
+        EmailUserText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                EmailUserTextKeyReleased(evt);
+            }
+        });
 
         CancelUserButton.setText("Cancelar");
         CancelUserButton.addActionListener(new java.awt.event.ActionListener() {
@@ -273,14 +304,38 @@ public class CadastroView extends javax.swing.JFrame {
 
         PassUserLabel.setText("Senha:");
 
+        CEPUserLabel.setText("CEP:");
+
+        CityUserLabel.setText("Cidade:");
+
+        CityUserText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CityUserTextActionPerformed(evt);
+            }
+        });
+
+        UFUserLabel.setText("UF:");
+
+        UFUserText.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione um estado", "RO", "AC", "AM", "RR", "PA", "AP", "TO", "MA", "PI", "CE", "RN", "PB", "PE", "AL", "SE", "BA", "MG", "ES", "RJ", "SP", "PR", "SC", "RS", "MS", "MT", "GO", "DF" }));
+
+        DistrictUserLabel.setText("Bairro:");
+
+        StreetUserLabel.setText("Rua:");
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
+                        .addComponent(UFUserLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(UFUserText, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CancelUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(NameUserLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(NameUserText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -291,16 +346,29 @@ public class CadastroView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(PassUserLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(PassUserText, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(PassUserText, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(252, 252, 252)
-                        .addComponent(CancelUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(CEPUserLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(CEPUserText, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(DistrictUserLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(DistrictUserText, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(StreetUserLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(StreetUserText)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(CityUserLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(CityUserText, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NameUserLabel)
                     .addComponent(NameUserText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -308,9 +376,27 @@ public class CadastroView extends javax.swing.JFrame {
                     .addComponent(EmailUserText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PassUserLabel)
                     .addComponent(PassUserText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(CancelUserButton)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CEPUserLabel)
+                    .addComponent(CEPUserText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CityUserLabel)
+                    .addComponent(CityUserText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DistrictUserText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DistrictUserLabel)
+                    .addComponent(StreetUserText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(StreetUserLabel))
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addComponent(CancelUserButton)
+                        .addContainerGap())
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(UFUserLabel)
+                            .addComponent(UFUserText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         NewUserButton.setText("Novo");
@@ -452,6 +538,10 @@ public class CadastroView extends javax.swing.JFrame {
             NameUserText.setText("");
             EmailUserText.setText("");
             PassUserText.setText("");
+            CEPUserText.setText("");
+            DistrictUserText.setText("");
+            StreetUserText.setText("");
+            CityUserText.setText("");
 
             //Atualiza tabela
             readUserTable();
@@ -473,6 +563,11 @@ public class CadastroView extends javax.swing.JFrame {
 
             user.setName(NameUserText.getText());
             user.setEmail(EmailUserText.getText());
+            user.setCep(CEPUserText.getText());
+            user.setBairro(DistrictUserText.getText());
+            user.setRua(StreetUserText.getText());
+            user.setCidade(CityUserText.getText());
+            user.setEstado(UFUserText.getSelectedItem().toString());
             user.setId((int) UserTable.getValueAt(UserTable.getSelectedRow(), 0));
 
             userDao.updateUser(user);
@@ -480,6 +575,11 @@ public class CadastroView extends javax.swing.JFrame {
             //Limpar campos apos atualização dos dados
             NameUserText.setText("");
             EmailUserText.setText("");
+            PassUserText.setText("");
+            CEPUserText.setText("");
+            DistrictUserText.setText("");
+            StreetUserText.setText("");
+            CityUserText.setText("");
 
             //Atualiza tabela
             readUserTable();
@@ -493,10 +593,15 @@ public class CadastroView extends javax.swing.JFrame {
         Usuario user = new Usuario();
         UsuarioDAO userDao = new UsuarioDAO();
 
-        if(!NameUserText.getText().trim().isEmpty() && !EmailUserText.getText().trim().isEmpty() && !PassUserText.getText().trim().isEmpty()){
+        if(!NameUserText.getText().trim().isEmpty() && !EmailUserText.getText().trim().isEmpty() && !PassUserText.getText().trim().isEmpty() && !CEPUserText.getText().trim().isEmpty() && !CityUserText.getText().trim().isEmpty() && !"Selecione um estado".equals(UFUserText.getSelectedItem().toString())){
             user.setName(NameUserText.getText());
             user.setEmail(EmailUserText.getText());
             user.setPassword(PassUserText.getText());
+            user.setCep(CEPUserText.getText());
+            user.setBairro(DistrictUserText.getText());
+            user.setRua(StreetUserText.getText());
+            user.setCidade(CityUserText.getText());
+            user.setEstado(UFUserText.getSelectedItem().toString());
 
             userDao.createUser(user);
 
@@ -504,6 +609,10 @@ public class CadastroView extends javax.swing.JFrame {
             NameUserText.setText("");
             EmailUserText.setText("");
             PassUserText.setText("");
+            CEPUserText.setText("");
+            DistrictUserText.setText("");
+            StreetUserText.setText("");
+            CityUserText.setText("");
 
             //Adicionar novo produto a tabela
             readUserTable();
@@ -520,6 +629,10 @@ public class CadastroView extends javax.swing.JFrame {
         NameUserText.setText("");
         EmailUserText.setText("");
         PassUserText.setText("");
+        CEPUserText.setText("");
+        DistrictUserText.setText("");
+        StreetUserText.setText("");
+        CityUserText.setText("");
     }//GEN-LAST:event_CancelUserButtonActionPerformed
 
     private void UserTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UserTableMouseClicked
@@ -528,13 +641,17 @@ public class CadastroView extends javax.swing.JFrame {
 
             NameUserText.setText(UserTable.getValueAt(UserTable.getSelectedRow(), 1).toString());
             EmailUserText.setText(UserTable.getValueAt(UserTable.getSelectedRow(), 2).toString());
-
+            CEPUserText.setText(UserTable.getValueAt(UserTable.getSelectedRow(), 3).toString());
+            DistrictUserText.setText(UserTable.getValueAt(UserTable.getSelectedRow(), 4).toString());
+            StreetUserText.setText(UserTable.getValueAt(UserTable.getSelectedRow(), 5).toString());
+            CityUserText.setText(UserTable.getValueAt(UserTable.getSelectedRow(), 6).toString());
+            UFUserText.setSelectedItem(UserTable.getValueAt(UserTable.getSelectedRow(), 7).toString());
         }
     }//GEN-LAST:event_UserTableMouseClicked
 
     private void DelProdButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelProdButtonActionPerformed
 
-        if (ProdTable.getSelectedRow() != -1) {
+        if (ProdTable.getSelectedRow() != -1) { 
 
             //Delete Produto
             Produto product = new Produto();
@@ -631,6 +748,31 @@ public class CadastroView extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_ExitButtonBarActionPerformed
 
+    private void NameUserTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NameUserTextKeyReleased
+        NameUserText.setText(maxlength(NameUserText.getText(), 50));
+    }//GEN-LAST:event_NameUserTextKeyReleased
+
+    private void EmailUserTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EmailUserTextKeyReleased
+        EmailUserText.setText(maxlength(EmailUserText.getText(), 250));
+    }//GEN-LAST:event_EmailUserTextKeyReleased
+
+    private void CityUserTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CityUserTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CityUserTextActionPerformed
+
+    private void EmailUserTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailUserTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EmailUserTextActionPerformed
+
+    public static String maxlength(String str, int maxValue){
+        String value = str;
+        if(str.length() > maxValue){
+            JOptionPane.showMessageDialog(null, "Quantidade maxima atingida!");
+            value = str.substring(0, maxValue);
+        }
+        return value;
+    }
+    
     public void readProdTable() {
 
         DefaultTableModel modelo = (DefaultTableModel) ProdTable.getModel();
@@ -660,7 +802,12 @@ public class CadastroView extends javax.swing.JFrame {
             modelo.addRow(new Object[]{
                 u.getId(),
                 u.getName(),
-                u.getEmail()
+                u.getEmail(),
+                u.getCep(),
+                u.getBairro(),
+                u.getRua(),
+                u.getCidade(),
+                u.getEstado()
             });
         });
 
@@ -677,7 +824,12 @@ public class CadastroView extends javax.swing.JFrame {
             modelo.addRow(new Object[]{
                 u.getId(),
                 u.getName(),
-                u.getEmail()
+                u.getEmail(),
+                u.getCep(),
+                u.getBairro(),
+                u.getRua(),
+                u.getCidade(),
+                u.getEstado()
             });
         });
 
@@ -721,12 +873,18 @@ public class CadastroView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar AppBar;
+    private javax.swing.JLabel CEPUserLabel;
+    private javax.swing.JTextField CEPUserText;
     private javax.swing.JButton CancelProdButton;
     private javax.swing.JButton CancelUserButton;
+    private javax.swing.JLabel CityUserLabel;
+    private javax.swing.JTextField CityUserText;
     private javax.swing.JButton DelProdButton;
     private javax.swing.JButton DelUserButton;
     private javax.swing.JLabel DescProdLabel;
     private javax.swing.JTextField DescProdText;
+    private javax.swing.JLabel DistrictUserLabel;
+    private javax.swing.JTextField DistrictUserText;
     private javax.swing.JButton EditProdButton;
     private javax.swing.JButton EditUserButton;
     private javax.swing.JLabel EmailUserLabel;
@@ -746,6 +904,10 @@ public class CadastroView extends javax.swing.JFrame {
     private javax.swing.JTextField QtdProdText;
     private javax.swing.JButton SearchUserButton;
     private javax.swing.JTextField SearchUserText;
+    private javax.swing.JLabel StreetUserLabel;
+    private javax.swing.JTextField StreetUserText;
+    private javax.swing.JLabel UFUserLabel;
+    private javax.swing.JComboBox<String> UFUserText;
     private javax.swing.JTable UserTable;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;

@@ -29,10 +29,15 @@ public class UsuarioDAO {
         
         try {
         
-            stmt = con.prepareStatement("INSERT INTO user (name, email, password) VALUES (?,?,?)");
+            stmt = con.prepareStatement("INSERT INTO user (name, email, password, cep, bairro, rua, cidade, estado) VALUES (?,?,?,?,?,?,?,?)");
             stmt.setString(1, u.getName());
             stmt.setString(2, u.getEmail());
             stmt.setString(3, u.getPassword());
+            stmt.setString(4, u.getCep());
+            stmt.setString(5, u.getBairro());
+            stmt.setString(6, u.getRua());
+            stmt.setString(7, u.getCidade());
+            stmt.setString(8, u.getEstado());
             
             stmt.executeUpdate();
             
@@ -57,10 +62,15 @@ public class UsuarioDAO {
         
         try {
         
-            stmt = con.prepareStatement("UPDATE user SET name = ?, email = ? WHERE id = ?");
+            stmt = con.prepareStatement("UPDATE user SET name = ?, email = ?, cep = ?, bairro = ?, rua = ?, cidade = ? , estado = ?, WHERE id = ?");
             stmt.setString(1, u.getName());
             stmt.setString(2, u.getEmail());
-            stmt.setInt(3, u.getId());            
+            stmt.setString(3, u.getCep());
+            stmt.setString(4, u.getBairro());
+            stmt.setString(5, u.getRua());
+            stmt.setString(6, u.getCidade());
+            stmt.setString(7, u.getEstado());
+            stmt.setInt(8, u.getId());            
             
             stmt.executeUpdate();
             
@@ -125,6 +135,11 @@ public class UsuarioDAO {
                 user.setId(rs.getInt("id"));
                 user.setName(rs.getString("name"));
                 user.setEmail(rs.getString("email"));
+                user.setCep(rs.getString("cep"));
+                user.setBairro(rs.getString("bairro"));
+                user.setRua(rs.getString("rua"));
+                user.setCidade(rs.getString("cidade"));
+                user.setEstado(rs.getString("estado"));
                 
                 users.add(user);
                 
@@ -200,6 +215,11 @@ public class UsuarioDAO {
                 user.setId(rs.getInt("id"));
                 user.setName(rs.getString("name"));
                 user.setEmail(rs.getString("email"));
+                user.setCep(rs.getString("cep"));
+                user.setBairro(rs.getString("bairro"));
+                user.setRua(rs.getString("rua"));
+                user.setCidade(rs.getString("cidade"));
+                user.setEstado(rs.getString("estado"));
                 
                 users.add(user);
                 

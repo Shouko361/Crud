@@ -341,25 +341,55 @@
                 <Component class="javax.swing.JTable" name="UserTable">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="3" rowCount="0">
+                      <Table columnCount="8" rowCount="0">
                         <Column editable="false" title="ID" type="java.lang.Integer"/>
                         <Column editable="false" title="Nome" type="java.lang.String"/>
                         <Column editable="false" title="Email" type="java.lang.String"/>
+                        <Column editable="false" title="CEP" type="java.lang.String"/>
+                        <Column editable="false" title="Bairro" type="java.lang.String"/>
+                        <Column editable="false" title="Rua" type="java.lang.String"/>
+                        <Column editable="false" title="Cidade" type="java.lang.String"/>
+                        <Column editable="false" title="Estado" type="java.lang.String"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="60" resizable="true">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="30" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="250" resizable="true">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="250" resizable="true">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
@@ -393,9 +423,16 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="UFUserLabel" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="UFUserText" min="-2" pref="183" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="CancelUserButton" min="-2" pref="97" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
                                   <Component id="NameUserLabel" min="-2" pref="56" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="NameUserText" min="-2" pref="115" max="-2" attributes="0"/>
@@ -407,20 +444,33 @@
                                   <Component id="PassUserLabel" min="-2" pref="59" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="PassUserText" min="-2" pref="139" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="252" max="-2" attributes="0"/>
-                                  <Component id="CancelUserButton" min="-2" pref="97" max="-2" attributes="0"/>
+                                  <Component id="CEPUserLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="CEPUserText" min="-2" pref="70" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="DistrictUserLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="DistrictUserText" min="-2" pref="105" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="StreetUserLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="StreetUserText" max="32767" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="CityUserLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="CityUserText" min="-2" pref="111" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="NameUserLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="NameUserText" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -429,9 +479,32 @@
                               <Component id="PassUserLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="PassUserText" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="CancelUserButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="23" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="CEPUserLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="CEPUserText" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="CityUserLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="CityUserText" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="DistrictUserText" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="DistrictUserLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="StreetUserText" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="StreetUserLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace pref="12" max="32767" attributes="0"/>
+                                  <Component id="CancelUserButton" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="UFUserLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="UFUserText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -443,6 +516,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="NameUserText">
+                  <Events>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="NameUserTextKeyReleased"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="EmailUserLabel">
                   <Properties>
@@ -450,6 +526,10 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="EmailUserText">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EmailUserTextActionPerformed"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="EmailUserTextKeyReleased"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="CancelUserButton">
                   <Properties>
@@ -465,6 +545,81 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JPasswordField" name="PassUserText">
+                </Component>
+                <Component class="javax.swing.JLabel" name="CEPUserLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="CEP:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="CEPUserText">
+                </Component>
+                <Component class="javax.swing.JLabel" name="CityUserLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Cidade:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="CityUserText">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CityUserTextActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="UFUserLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="UF:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="UFUserText">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="28">
+                        <StringItem index="0" value="Selecione um estado"/>
+                        <StringItem index="1" value="RO"/>
+                        <StringItem index="2" value="AC"/>
+                        <StringItem index="3" value="AM"/>
+                        <StringItem index="4" value="RR"/>
+                        <StringItem index="5" value="PA"/>
+                        <StringItem index="6" value="AP"/>
+                        <StringItem index="7" value="TO"/>
+                        <StringItem index="8" value="MA"/>
+                        <StringItem index="9" value="PI"/>
+                        <StringItem index="10" value="CE"/>
+                        <StringItem index="11" value="RN"/>
+                        <StringItem index="12" value="PB"/>
+                        <StringItem index="13" value="PE"/>
+                        <StringItem index="14" value="AL"/>
+                        <StringItem index="15" value="SE"/>
+                        <StringItem index="16" value="BA"/>
+                        <StringItem index="17" value="MG"/>
+                        <StringItem index="18" value="ES"/>
+                        <StringItem index="19" value="RJ"/>
+                        <StringItem index="20" value="SP"/>
+                        <StringItem index="21" value="PR"/>
+                        <StringItem index="22" value="SC"/>
+                        <StringItem index="23" value="RS"/>
+                        <StringItem index="24" value="MS"/>
+                        <StringItem index="25" value="MT"/>
+                        <StringItem index="26" value="GO"/>
+                        <StringItem index="27" value="DF"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JLabel" name="DistrictUserLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Bairro:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="DistrictUserText">
+                </Component>
+                <Component class="javax.swing.JLabel" name="StreetUserLabel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Rua:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="StreetUserText">
                 </Component>
               </SubComponents>
             </Container>

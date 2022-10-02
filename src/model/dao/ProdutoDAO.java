@@ -78,6 +78,7 @@ public class ProdutoDAO {
         }
         
     }
+    
     public void deleteProd(Produto p){
         
         Connection con = ConnectionFactory.getConnection();

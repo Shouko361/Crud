@@ -5,6 +5,7 @@
         <group>
             <file>file:/home/shouko3613/Documentos/Crud/src/model/dao/UsuarioDAO.java</file>
             <file>file:/home/shouko3613/Documentos/Crud/src/connection/ConnectionFactory.java</file>
+            <file>file:/home/shouko3613/Documentos/Crud/src/model/bean/Produto.java</file>
             <file>file:/home/shouko3613/Documentos/Crud/src/view/LoginView.java</file>
             <file>file:/home/shouko3613/Documentos/Crud/src/model/dao/ProdutoDAO.java</file>
             <file>file:/home/shouko3613/Documentos/Crud/src/crudaplication/CrudAplication.java</file>
