@@ -81,7 +81,7 @@ public class LoginView extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(EmaiLoginlLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
-                        .addComponent(EmailLoginText, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(EmailLoginText, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(PassLoginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
@@ -121,14 +121,7 @@ public class LoginView extends javax.swing.JFrame {
         UsuarioDAO userDAO = new UsuarioDAO();
         
         if(userDAO.checkLogin(EmailLoginText.getText(), PassLoginText.getText())){
-            
-            new CadastroView().setVisible(true);
             this.dispose();
-            
-        }else{
-            
-            JOptionPane.showMessageDialog(null, "Dados incorretos!");
-            
         }
         
     }//GEN-LAST:event_LoginButtonActionPerformed
@@ -140,15 +133,18 @@ public class LoginView extends javax.swing.JFrame {
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             
             if(userDAO.checkLogin(EmailLoginText.getText(), PassLoginText.getText())){
-            
-                new CadastroView().setVisible(true);
                 this.dispose();
-
-            }else{
-
-                JOptionPane.showMessageDialog(null, "Dados incorretos!");
-
             }
+////            if(){
+//            
+//                new CadastroView().setVisible(true);
+//                this.dispose();
+
+//            }else{
+
+//                
+
+//            }
             
         }
         

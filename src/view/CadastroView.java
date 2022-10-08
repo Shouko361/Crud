@@ -1,11 +1,16 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import model.bean.Produto;
 import model.bean.Usuario;
 import model.dao.ProdutoDAO;
@@ -30,7 +35,6 @@ public class CadastroView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         readProdTable();
         readUserTable();
-        // ListaDep = new ArrayList();
     }
 
     /**
@@ -42,11 +46,11 @@ public class CadastroView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel3 = new javax.swing.JPanel();
+        TabbedPanel = new javax.swing.JTabbedPane();
+        ProdPanel = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         ProdTable = new javax.swing.JTable();
-        jPanel8 = new javax.swing.JPanel();
+        PanelProd = new javax.swing.JPanel();
         QtdProdLabel = new javax.swing.JLabel();
         QtdProdText = new javax.swing.JTextField();
         PriceProdLabel = new javax.swing.JLabel();
@@ -57,10 +61,10 @@ public class CadastroView extends javax.swing.JFrame {
         NewProdButton = new javax.swing.JButton();
         EditProdButton = new javax.swing.JButton();
         DelProdButton = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
+        UserPanel = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         UserTable = new javax.swing.JTable();
-        jPanel9 = new javax.swing.JPanel();
+        PanelUser = new javax.swing.JPanel();
         NameUserLabel = new javax.swing.JLabel();
         NameUserText = new javax.swing.JTextField();
         EmailUserLabel = new javax.swing.JLabel();
@@ -83,9 +87,27 @@ public class CadastroView extends javax.swing.JFrame {
         DelUserButton = new javax.swing.JButton();
         SearchUserText = new javax.swing.JTextField();
         SearchUserButton = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        CancelUserButton1 = new javax.swing.JButton();
+        CEPCepLabel = new javax.swing.JLabel();
+        CEPCepText = new javax.swing.JTextField();
+        CityUserLabel1 = new javax.swing.JLabel();
+        CityUserText1 = new javax.swing.JTextField();
+        UFUserLabel1 = new javax.swing.JLabel();
+        UFUserText1 = new javax.swing.JComboBox<>();
+        DistrictUserLabel1 = new javax.swing.JLabel();
+        DistrictUserText1 = new javax.swing.JTextField();
+        StreetUserLabel1 = new javax.swing.JLabel();
+        StreetUserText1 = new javax.swing.JTextField();
+        HelloLabel = new javax.swing.JLabel();
+        NameLabel = new javax.swing.JLabel();
         AppBar = new javax.swing.JMenuBar();
         OptionsButtonBar = new javax.swing.JMenu();
         ExitButtonBar = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        CheckDarkTheme = new javax.swing.JCheckBoxMenuItem();
+        CheckWhiteTheme = new javax.swing.JCheckBoxMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,6 +134,9 @@ public class CadastroView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        ProdTable.setFocusTraversalPolicyProvider(true);
+        ProdTable.setFocusable(false);
+        ProdTable.setGridColor(new java.awt.Color(211, 211, 211));
         ProdTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ProdTableMouseClicked(evt);
@@ -126,7 +151,7 @@ public class CadastroView extends javax.swing.JFrame {
             ProdTable.getColumnModel().getColumn(3).setHeaderValue("Preço");
         }
 
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Dados"));
+        PanelProd.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Dados"));
 
         QtdProdLabel.setText("Qtd:");
 
@@ -141,11 +166,11 @@ public class CadastroView extends javax.swing.JFrame {
 
         DescProdLabel.setText("Desc.:");
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
+        javax.swing.GroupLayout PanelProdLayout = new javax.swing.GroupLayout(PanelProd);
+        PanelProd.setLayout(PanelProdLayout);
+        PanelProdLayout.setHorizontalGroup(
+            PanelProdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelProdLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(QtdProdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -159,16 +184,16 @@ public class CadastroView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(DescProdText, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(jPanel8Layout.createSequentialGroup()
+            .addGroup(PanelProdLayout.createSequentialGroup()
                 .addGap(252, 252, 252)
                 .addComponent(CancelProdButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
+        PanelProdLayout.setVerticalGroup(
+            PanelProdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelProdLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PanelProdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(QtdProdLabel)
                     .addComponent(QtdProdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PriceProdLabel)
@@ -201,14 +226,14 @@ public class CadastroView extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        javax.swing.GroupLayout ProdPanelLayout = new javax.swing.GroupLayout(ProdPanel);
+        ProdPanel.setLayout(ProdPanelLayout);
+        ProdPanelLayout.setHorizontalGroup(
+            ProdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ProdPanelLayout.createSequentialGroup()
+                .addComponent(PanelProd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(jPanel3Layout.createSequentialGroup()
+            .addGroup(ProdPanelLayout.createSequentialGroup()
                 .addGap(74, 74, 74)
                 .addComponent(NewProdButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(74, 74, 74)
@@ -218,13 +243,13 @@ public class CadastroView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jScrollPane5)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+        ProdPanelLayout.setVerticalGroup(
+            ProdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProdPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(PanelProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(ProdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NewProdButton)
                     .addComponent(EditProdButton)
                     .addComponent(DelProdButton))
@@ -232,7 +257,7 @@ public class CadastroView extends javax.swing.JFrame {
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jTabbedPane1.addTab("Produtos", jPanel3);
+        TabbedPanel.addTab("Produtos", ProdPanel);
 
         UserTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -272,7 +297,7 @@ public class CadastroView extends javax.swing.JFrame {
             UserTable.getColumnModel().getColumn(5).setPreferredWidth(100);
         }
 
-        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Dados"));
+        PanelUser.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Dados"));
 
         NameUserLabel.setText("Nome:");
 
@@ -322,20 +347,20 @@ public class CadastroView extends javax.swing.JFrame {
 
         StreetUserLabel.setText("Rua:");
 
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
+        javax.swing.GroupLayout PanelUserLayout = new javax.swing.GroupLayout(PanelUser);
+        PanelUser.setLayout(PanelUserLayout);
+        PanelUserLayout.setHorizontalGroup(
+            PanelUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelUserLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGroup(PanelUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelUserLayout.createSequentialGroup()
                         .addComponent(UFUserLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(UFUserText, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(CancelUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
+                    .addGroup(PanelUserLayout.createSequentialGroup()
                         .addComponent(NameUserLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(NameUserText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -348,7 +373,7 @@ public class CadastroView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(PassUserText, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
+                    .addGroup(PanelUserLayout.createSequentialGroup()
                         .addComponent(CEPUserLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(CEPUserText, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -366,10 +391,10 @@ public class CadastroView extends javax.swing.JFrame {
                         .addComponent(CityUserText, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        PanelUserLayout.setVerticalGroup(
+            PanelUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelUserLayout.createSequentialGroup()
+                .addGroup(PanelUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NameUserLabel)
                     .addComponent(NameUserText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(EmailUserLabel)
@@ -377,7 +402,7 @@ public class CadastroView extends javax.swing.JFrame {
                     .addComponent(PassUserLabel)
                     .addComponent(PassUserText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PanelUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CEPUserLabel)
                     .addComponent(CEPUserText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CityUserLabel)
@@ -386,14 +411,14 @@ public class CadastroView extends javax.swing.JFrame {
                     .addComponent(DistrictUserLabel)
                     .addComponent(StreetUserText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(StreetUserLabel))
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGroup(PanelUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelUserLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                         .addComponent(CancelUserButton)
                         .addContainerGap())
-                    .addGroup(jPanel9Layout.createSequentialGroup()
+                    .addGroup(PanelUserLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(PanelUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(UFUserLabel)
                             .addComponent(UFUserText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -434,36 +459,32 @@ public class CadastroView extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(NewUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(EditUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(DelUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(SearchUserText, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(SearchUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 20, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addComponent(jScrollPane6)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout UserPanelLayout = new javax.swing.GroupLayout(UserPanel);
+        UserPanel.setLayout(UserPanelLayout);
+        UserPanelLayout.setHorizontalGroup(
+            UserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UserPanelLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(NewUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(EditUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(DelUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(SearchUserText, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(SearchUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
+            .addComponent(jScrollPane6)
+            .addComponent(PanelUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        UserPanelLayout.setVerticalGroup(
+            UserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UserPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(UserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NewUserButton)
                     .addComponent(EditUserButton)
                     .addComponent(DelUserButton)
@@ -473,7 +494,115 @@ public class CadastroView extends javax.swing.JFrame {
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jTabbedPane1.addTab("Usuarios", jPanel5);
+        TabbedPanel.addTab("Usuarios", UserPanel);
+
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Dados"));
+
+        CancelUserButton1.setText("Cancelar");
+        CancelUserButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelUserButton1ActionPerformed(evt);
+            }
+        });
+
+        CEPCepLabel.setText("CEP:");
+
+        CityUserLabel1.setText("Cidade:");
+
+        CityUserText1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CityUserText1ActionPerformed(evt);
+            }
+        });
+
+        UFUserLabel1.setText("UF:");
+
+        UFUserText1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione um estado", "RO", "AC", "AM", "RR", "PA", "AP", "TO", "MA", "PI", "CE", "RN", "PB", "PE", "AL", "SE", "BA", "MG", "ES", "RJ", "SP", "PR", "SC", "RS", "MS", "MT", "GO", "DF" }));
+
+        DistrictUserLabel1.setText("Bairro:");
+
+        StreetUserLabel1.setText("Rua:");
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(CEPCepLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(CEPCepText, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(DistrictUserLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(DistrictUserText1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(StreetUserLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(StreetUserText1, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(CityUserLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(CityUserText1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addComponent(UFUserLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(UFUserText1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addGap(258, 258, 258)
+                                .addComponent(CancelUserButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CEPCepLabel)
+                    .addComponent(CEPCepText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CityUserLabel1)
+                    .addComponent(CityUserText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DistrictUserText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DistrictUserLabel1)
+                    .addComponent(StreetUserText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(StreetUserLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(UFUserLabel1)
+                    .addComponent(UFUserText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(CancelUserButton1)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(258, Short.MAX_VALUE))
+        );
+
+        TabbedPanel.addTab("Cep", jPanel1);
+
+        HelloLabel.setText("Olá");
+
+        AppBar.setBackground(new java.awt.Color(0, 0, 0));
+        AppBar.setToolTipText("");
 
         OptionsButtonBar.setText("Opções");
         OptionsButtonBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -490,17 +619,50 @@ public class CadastroView extends javax.swing.JFrame {
 
         AppBar.add(OptionsButtonBar);
 
+        jMenu1.setText("Tema");
+
+        CheckDarkTheme.setText("Dark");
+        CheckDarkTheme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckDarkThemeActionPerformed(evt);
+            }
+        });
+        jMenu1.add(CheckDarkTheme);
+
+        CheckWhiteTheme.setSelected(true);
+        CheckWhiteTheme.setText("White");
+        CheckWhiteTheme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckWhiteThemeActionPerformed(evt);
+            }
+        });
+        jMenu1.add(CheckWhiteTheme);
+
+        AppBar.add(jMenu1);
+
         setJMenuBar(AppBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(TabbedPanel)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(HelloLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(NameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(HelloLabel)
+                    .addComponent(NameLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(TabbedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -764,6 +926,206 @@ public class CadastroView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_EmailUserTextActionPerformed
 
+    private void CancelUserButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelUserButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CancelUserButton1ActionPerformed
+
+    private void CityUserText1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CityUserText1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CityUserText1ActionPerformed
+
+    private void DarkTheme(){
+        //Panel
+        AppBar.setBackground(Color.black);
+        AppBar.setForeground(Color.white);
+        TabbedPanel.setBackground(Color.black);
+        ProdPanel.setBackground(Color.black);
+        UserPanel.setBackground(Color.black);
+        PanelProd.setBackground(Color.black);
+        PanelUser.setBackground(Color.black);
+        PanelUser.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Dados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Liberation Sans", 0, 15), new java.awt.Color(255, 255, 255))); // NOI18N
+        PanelProd.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Dados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Liberation Sans", 0, 15), new java.awt.Color(255, 255, 255))); // NOI18N
+        //Produtos Dark Theme
+        QtdProdLabel.setForeground(Color.white);
+        QtdProdText.setBackground(Color.black);
+        QtdProdText.setForeground(Color.white);
+
+        PriceProdLabel.setForeground(Color.white);
+        PriceProdText.setBackground(Color.black);
+        PriceProdText.setForeground(Color.white);
+
+        DescProdLabel.setForeground(Color.white);
+        DescProdText.setBackground(Color.black);
+        DescProdText.setForeground(Color.white);
+
+        CancelProdButton.setBackground(Color.black);
+        CancelProdButton.setForeground(Color.white);
+
+        NewProdButton.setBackground(Color.black);
+        NewProdButton.setForeground(Color.white);
+
+        EditProdButton.setBackground(Color.black);
+        EditProdButton.setForeground(Color.white);
+
+        DelProdButton.setBackground(Color.black);
+        DelProdButton.setForeground(Color.white);
+
+        //User Dark Theme
+        NameUserLabel.setForeground(Color.white);
+        NameUserText.setBackground(Color.black);
+        NameUserText.setForeground(Color.white);
+
+        EmailUserLabel.setForeground(Color.white);
+        EmailUserText.setBackground(Color.black);
+        EmailUserText.setForeground(Color.white);
+
+        PassUserLabel.setForeground(Color.white);
+        PassUserText.setBackground(Color.black);
+        PassUserText.setForeground(Color.white);
+
+        CEPUserLabel.setForeground(Color.white);
+        CEPUserText.setBackground(Color.black);
+        CEPUserText.setForeground(Color.white);
+
+        DistrictUserText.setForeground(Color.white);
+        DistrictUserText.setBackground(Color.black);
+        DistrictUserText.setForeground(Color.white);
+
+        StreetUserLabel.setForeground(Color.white);
+        StreetUserText.setBackground(Color.black);
+        StreetUserText.setForeground(Color.white);
+
+        CityUserLabel.setForeground(Color.white);
+        CityUserText.setBackground(Color.black);
+        CityUserText.setForeground(Color.white);
+
+        UFUserLabel.setForeground(Color.white);
+        //UFUserText.setBackground(Color.black);
+        UFUserText.setForeground(Color.white);
+
+        CancelUserButton.setBackground(Color.black);
+        CancelUserButton.setForeground(Color.white);
+
+        NewUserButton.setBackground(Color.black);
+        NewUserButton.setForeground(Color.white);
+
+        EditUserButton.setBackground(Color.black);
+        EditUserButton.setForeground(Color.white);
+
+        DelUserButton.setBackground(Color.black);
+        DelUserButton.setForeground(Color.white);
+
+        SearchUserText.setBackground(Color.black);
+        SearchUserText.setForeground(Color.white);
+        SearchUserButton.setBackground(Color.black);
+        SearchUserButton.setForeground(Color.white);
+    }
+    
+    private void WhiteTheme(){
+        //Panel
+        AppBar.setBackground(Color.white);
+        AppBar.setForeground(Color.black);
+        TabbedPanel.setBackground(Color.white);
+        ProdPanel.setBackground(Color.white);
+        UserPanel.setBackground(Color.white);
+        PanelProd.setBackground(Color.white);
+        PanelUser.setBackground(Color.white);
+        PanelUser.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Dados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Liberation Sans", 0, 15), new java.awt.Color(0, 0, 0))); // NOI18N
+        PanelProd.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Dados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Liberation Sans", 0, 15), new java.awt.Color(0, 0, 0))); // NOI18N
+        //Produtos White Theme
+        QtdProdLabel.setForeground(Color.black);
+        QtdProdText.setBackground(Color.white);
+        QtdProdText.setForeground(Color.black);
+
+        PriceProdLabel.setForeground(Color.black);
+        PriceProdText.setBackground(Color.white);
+        PriceProdText.setForeground(Color.black);
+
+        DescProdLabel.setForeground(Color.black);
+        DescProdText.setBackground(Color.white);
+        DescProdText.setForeground(Color.black);
+
+        CancelProdButton.setBackground(Color.white);
+        CancelProdButton.setForeground(Color.black);
+
+        NewProdButton.setBackground(Color.white);
+        NewProdButton.setForeground(Color.black);
+
+        EditProdButton.setBackground(Color.white);
+        EditProdButton.setForeground(Color.black);
+
+        DelProdButton.setBackground(Color.white);
+        DelProdButton.setForeground(Color.black);
+
+        //User White Theme
+        NameUserLabel.setForeground(Color.black);
+        NameUserText.setBackground(Color.white);
+        NameUserText.setForeground(Color.black);
+
+        EmailUserLabel.setForeground(Color.black);
+        EmailUserText.setBackground(Color.white);
+        EmailUserText.setForeground(Color.black);
+
+        PassUserLabel.setForeground(Color.black);
+        PassUserText.setBackground(Color.white);
+        PassUserText.setForeground(Color.black);
+
+        CEPUserLabel.setForeground(Color.black);
+        CEPUserText.setBackground(Color.white);
+        CEPUserText.setForeground(Color.black);
+
+        DistrictUserText.setForeground(Color.black);
+        DistrictUserText.setBackground(Color.white);
+        DistrictUserText.setForeground(Color.black);
+
+        StreetUserLabel.setForeground(Color.black);
+        StreetUserText.setBackground(Color.white);
+        StreetUserText.setForeground(Color.black);
+
+        CityUserLabel.setForeground(Color.black);
+        CityUserText.setBackground(Color.white);
+        CityUserText.setForeground(Color.black);
+
+        UFUserLabel.setForeground(Color.black);
+        //UFUserText.setBackground(Color.white);
+        UFUserText.setForeground(Color.black);
+
+        CancelUserButton.setBackground(Color.white);
+        CancelUserButton.setForeground(Color.black);
+
+        NewUserButton.setBackground(Color.white);
+        NewUserButton.setForeground(Color.black);
+
+        EditUserButton.setBackground(Color.white);
+        EditUserButton.setForeground(Color.black);
+
+        DelUserButton.setBackground(Color.white);
+        DelUserButton.setForeground(Color.black);
+
+        SearchUserText.setBackground(Color.white);
+        SearchUserText.setForeground(Color.black);
+        SearchUserButton.setBackground(Color.white);
+        SearchUserButton.setForeground(Color.black);
+    }
+    
+    private void CheckDarkThemeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckDarkThemeActionPerformed
+        if(CheckWhiteTheme.isSelected()){
+            CheckWhiteTheme.setSelected(false);
+        }
+        if(CheckDarkTheme.isSelected()){
+            this.DarkTheme();
+        }
+    }//GEN-LAST:event_CheckDarkThemeActionPerformed
+
+    private void CheckWhiteThemeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckWhiteThemeActionPerformed
+        if(CheckDarkTheme.isSelected()){
+            CheckDarkTheme.setSelected(false);
+        }
+        if(CheckWhiteTheme.isSelected()){
+            this.WhiteTheme();
+        }
+    }//GEN-LAST:event_CheckWhiteThemeActionPerformed
+
     public static String maxlength(String str, int maxValue){
         String value = str;
         if(str.length() > maxValue){
@@ -873,48 +1235,66 @@ public class CadastroView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar AppBar;
+    private javax.swing.JLabel CEPCepLabel;
+    private javax.swing.JTextField CEPCepText;
     private javax.swing.JLabel CEPUserLabel;
     private javax.swing.JTextField CEPUserText;
     private javax.swing.JButton CancelProdButton;
     private javax.swing.JButton CancelUserButton;
+    private javax.swing.JButton CancelUserButton1;
+    private javax.swing.JCheckBoxMenuItem CheckDarkTheme;
+    private javax.swing.JCheckBoxMenuItem CheckWhiteTheme;
     private javax.swing.JLabel CityUserLabel;
+    private javax.swing.JLabel CityUserLabel1;
     private javax.swing.JTextField CityUserText;
+    private javax.swing.JTextField CityUserText1;
     private javax.swing.JButton DelProdButton;
     private javax.swing.JButton DelUserButton;
     private javax.swing.JLabel DescProdLabel;
     private javax.swing.JTextField DescProdText;
     private javax.swing.JLabel DistrictUserLabel;
+    private javax.swing.JLabel DistrictUserLabel1;
     private javax.swing.JTextField DistrictUserText;
+    private javax.swing.JTextField DistrictUserText1;
     private javax.swing.JButton EditProdButton;
     private javax.swing.JButton EditUserButton;
     private javax.swing.JLabel EmailUserLabel;
     private javax.swing.JTextField EmailUserText;
     private javax.swing.JMenuItem ExitButtonBar;
+    private javax.swing.JLabel HelloLabel;
+    public javax.swing.JLabel NameLabel;
     private javax.swing.JLabel NameUserLabel;
     private javax.swing.JTextField NameUserText;
     private javax.swing.JButton NewProdButton;
     private javax.swing.JButton NewUserButton;
     private javax.swing.JMenu OptionsButtonBar;
+    private javax.swing.JPanel PanelProd;
+    private javax.swing.JPanel PanelUser;
     private javax.swing.JLabel PassUserLabel;
     private javax.swing.JPasswordField PassUserText;
     private javax.swing.JLabel PriceProdLabel;
     private javax.swing.JTextField PriceProdText;
+    private javax.swing.JPanel ProdPanel;
     private javax.swing.JTable ProdTable;
     private javax.swing.JLabel QtdProdLabel;
     private javax.swing.JTextField QtdProdText;
     private javax.swing.JButton SearchUserButton;
     private javax.swing.JTextField SearchUserText;
     private javax.swing.JLabel StreetUserLabel;
+    private javax.swing.JLabel StreetUserLabel1;
     private javax.swing.JTextField StreetUserText;
+    private javax.swing.JTextField StreetUserText1;
+    private javax.swing.JTabbedPane TabbedPanel;
     private javax.swing.JLabel UFUserLabel;
+    private javax.swing.JLabel UFUserLabel1;
     private javax.swing.JComboBox<String> UFUserText;
+    private javax.swing.JComboBox<String> UFUserText1;
+    private javax.swing.JPanel UserPanel;
     private javax.swing.JTable UserTable;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 }

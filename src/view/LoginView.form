@@ -35,7 +35,7 @@
                   <Group type="102" alignment="2" attributes="0">
                       <Component id="EmaiLoginlLabel" min="-2" pref="50" max="-2" attributes="0"/>
                       <EmptySpace min="6" pref="6" max="6" attributes="0"/>
-                      <Component id="EmailLoginText" min="-2" pref="187" max="-2" attributes="0"/>
+                      <Component id="EmailLoginText" min="-2" pref="190" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="2" attributes="0">
                       <Component id="PassLoginLabel" min="-2" pref="50" max="-2" attributes="0"/>

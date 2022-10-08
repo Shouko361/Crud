@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.bean.Usuario;
+import view.CadastroView;
 
 /**
  *
@@ -176,9 +177,13 @@ public class UsuarioDAO {
             rs = stmt.executeQuery();
             
             if(rs.next()){
-                
+                CadastroView cadastro = new CadastroView();
+                cadastro.NameLabel.setText(rs.getString(2));
+                cadastro.setVisible(true);
                 status = true;
                 
+            }else{
+                JOptionPane.showMessageDialog(null, "Dados incorretos!");
             }
         
         } catch (SQLException ex) {
@@ -192,7 +197,6 @@ public class UsuarioDAO {
         }
         
         return status;
-        
     }
     
     public List<Usuario> listUser(){
