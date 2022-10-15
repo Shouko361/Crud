@@ -5,7 +5,7 @@
     <Menu class="javax.swing.JMenuBar" name="AppBar">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="0" type="rgb"/>
+          <Color blue="d3" green="d3" red="d3" type="rgb"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
@@ -399,17 +399,17 @@
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
                         <Column maxWidth="-1" minWidth="-1" prefWidth="30" resizable="true">
-                          <Title/>
+                          <Title value="ID"/>
                           <Editor/>
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
-                          <Title/>
+                          <Title value="Nome"/>
                           <Editor/>
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
-                          <Title/>
+                          <Title value="Email"/>
                           <Editor/>
                           <Renderer/>
                         </Column>
@@ -434,7 +434,7 @@
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
+                          <Title value="Estado"/>
                           <Editor/>
                           <Renderer/>
                         </Column>
@@ -709,7 +709,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel1">
+        <Container class="javax.swing.JPanel" name="CepPanel">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Cep">
@@ -721,25 +721,44 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel10" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="30" max="32767" attributes="0"/>
+                      <Component id="NewCepButton" min="-2" pref="95" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="EditCepButton" min="-2" pref="95" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="DelCepButton" min="-2" pref="95" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="SearchCepText" min="-2" pref="193" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="SearchCepButton" min="-2" pref="95" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="jScrollPane7" alignment="0" max="32767" attributes="0"/>
+                  <Component id="PanelCep" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="258" max="32767" attributes="0"/>
+                      <Component id="PanelCep" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="NewCepButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="EditCepButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="DelCepButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="SearchCepText" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="SearchCepButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="36" max="32767" attributes="0"/>
+                      <Component id="jScrollPane7" min="-2" pref="180" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="jPanel10">
+            <Container class="javax.swing.JPanel" name="PanelCep">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -763,28 +782,28 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="CEPCepText" min="-2" pref="70" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="DistrictUserLabel1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="DistrictCepLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="DistrictUserText1" min="-2" pref="105" max="-2" attributes="0"/>
+                                  <Component id="DistrictCepText" min="-2" pref="105" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="StreetUserLabel1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="StreetCepLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="StreetUserText1" pref="115" max="32767" attributes="0"/>
+                                  <Component id="StreetCepText" max="32767" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="CityUserLabel1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="CityCepLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="CityUserText1" min="-2" pref="111" max="-2" attributes="0"/>
+                                  <Component id="CityCepText" min="-2" pref="111" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="UFUserLabel1" min="-2" pref="31" max="-2" attributes="0"/>
+                                          <Component id="UFCepLabel" min="-2" pref="31" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="UFUserText1" min="-2" pref="183" max="-2" attributes="0"/>
+                                          <Component id="UFCepText" min="-2" pref="183" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="258" max="-2" attributes="0"/>
-                                          <Component id="CancelUserButton1" min="-2" pref="97" max="-2" attributes="0"/>
+                                          <Component id="CancelCepButton" min="-2" pref="97" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -801,32 +820,32 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="CEPCepLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="CEPCepText" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="CityUserLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="CityUserText1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="DistrictUserText1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="DistrictUserLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="StreetUserText1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="StreetUserLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="CityCepLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="CityCepText" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="DistrictCepText" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="DistrictCepLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="StreetCepText" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="StreetCepLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="UFUserLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="UFUserText1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="UFCepLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="UFCepText" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="CancelUserButton1" min="-2" max="-2" attributes="0"/>
+                          <Component id="CancelCepButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="CancelUserButton1">
+                <Component class="javax.swing.JButton" name="CancelCepButton">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Cancelar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CancelUserButton1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CancelCepButtonActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="CEPCepLabel">
@@ -836,22 +855,22 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="CEPCepText">
                 </Component>
-                <Component class="javax.swing.JLabel" name="CityUserLabel1">
+                <Component class="javax.swing.JLabel" name="CityCepLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Cidade:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="CityUserText1">
+                <Component class="javax.swing.JTextField" name="CityCepText">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CityUserText1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CityCepTextActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JLabel" name="UFUserLabel1">
+                <Component class="javax.swing.JLabel" name="UFCepLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="UF:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="UFUserText1">
+                <Component class="javax.swing.JComboBox" name="UFCepText">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="28">
@@ -890,19 +909,122 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JLabel" name="DistrictUserLabel1">
+                <Component class="javax.swing.JLabel" name="DistrictCepLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Bairro:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="DistrictUserText1">
+                <Component class="javax.swing.JTextField" name="DistrictCepText">
                 </Component>
-                <Component class="javax.swing.JLabel" name="StreetUserLabel1">
+                <Component class="javax.swing.JLabel" name="StreetCepLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Rua:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="StreetUserText1">
+                <Component class="javax.swing.JTextField" name="StreetCepText">
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JButton" name="NewCepButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Novo"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NewCepButtonActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="EditCepButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Editar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EditCepButtonActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="DelCepButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Excluir"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DelCepButtonActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JTextField" name="SearchCepText">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value="Buscar um CEP"/>
+              </Properties>
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="SearchCepTextKeyPressed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="SearchCepButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Buscar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SearchCepButtonActionPerformed"/>
+              </Events>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane7">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="CepTable">
+                  <Properties>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="6" rowCount="0">
+                        <Column editable="false" title="ID" type="java.lang.Integer"/>
+                        <Column editable="false" title="CEP" type="java.lang.String"/>
+                        <Column editable="false" title="Bairro" type="java.lang.String"/>
+                        <Column editable="false" title="Rua" type="java.lang.String"/>
+                        <Column editable="false" title="Cidade" type="java.lang.String"/>
+                        <Column editable="false" title="UF" type="java.lang.String"/>
+                      </Table>
+                    </Property>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
+                    </Property>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CepTableMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

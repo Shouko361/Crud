@@ -23,12 +23,14 @@ DROP TABLE IF EXISTS `ceps`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ceps` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `cep` varchar(9) NOT NULL,
   `bairro` varchar(250) DEFAULT (_utf8mb4'Sem Bairro'),
   `rua` varchar(250) DEFAULT (_utf8mb4'Sem Rua'),
   `cidade` varchar(250) NOT NULL,
-  `uf` varchar(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `uf` varchar(2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,6 +39,7 @@ CREATE TABLE `ceps` (
 
 LOCK TABLES `ceps` WRITE;
 /*!40000 ALTER TABLE `ceps` DISABLE KEYS */;
+INSERT INTO `ceps` VALUES (14,'12224000','JD Motorama','Av das Rosas','São José dos Campos','SP'),(15,'12224001','JD Motorama','Av das Rosas','São José dos Campos','SP'),(16,'ttttt','aaaaa','fffff','ccccc','SC');
 /*!40000 ALTER TABLE `ceps` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -131,4 +134,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-07 22:45:20
+-- Dump completed on 2022-10-15 15:20:28

@@ -11,8 +11,10 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import model.bean.Cep;
 import model.bean.Produto;
 import model.bean.Usuario;
+import model.dao.CepDAO;
 import model.dao.ProdutoDAO;
 import model.dao.UsuarioDAO;
 
@@ -35,6 +37,7 @@ public class CadastroView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         readProdTable();
         readUserTable();
+        readCepTable();
     }
 
     /**
@@ -87,19 +90,26 @@ public class CadastroView extends javax.swing.JFrame {
         DelUserButton = new javax.swing.JButton();
         SearchUserText = new javax.swing.JTextField();
         SearchUserButton = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel10 = new javax.swing.JPanel();
-        CancelUserButton1 = new javax.swing.JButton();
+        CepPanel = new javax.swing.JPanel();
+        PanelCep = new javax.swing.JPanel();
+        CancelCepButton = new javax.swing.JButton();
         CEPCepLabel = new javax.swing.JLabel();
         CEPCepText = new javax.swing.JTextField();
-        CityUserLabel1 = new javax.swing.JLabel();
-        CityUserText1 = new javax.swing.JTextField();
-        UFUserLabel1 = new javax.swing.JLabel();
-        UFUserText1 = new javax.swing.JComboBox<>();
-        DistrictUserLabel1 = new javax.swing.JLabel();
-        DistrictUserText1 = new javax.swing.JTextField();
-        StreetUserLabel1 = new javax.swing.JLabel();
-        StreetUserText1 = new javax.swing.JTextField();
+        CityCepLabel = new javax.swing.JLabel();
+        CityCepText = new javax.swing.JTextField();
+        UFCepLabel = new javax.swing.JLabel();
+        UFCepText = new javax.swing.JComboBox<>();
+        DistrictCepLabel = new javax.swing.JLabel();
+        DistrictCepText = new javax.swing.JTextField();
+        StreetCepLabel = new javax.swing.JLabel();
+        StreetCepText = new javax.swing.JTextField();
+        NewCepButton = new javax.swing.JButton();
+        EditCepButton = new javax.swing.JButton();
+        DelCepButton = new javax.swing.JButton();
+        SearchCepText = new javax.swing.JTextField();
+        SearchCepButton = new javax.swing.JButton();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        CepTable = new javax.swing.JTable();
         HelloLabel = new javax.swing.JLabel();
         NameLabel = new javax.swing.JLabel();
         AppBar = new javax.swing.JMenuBar();
@@ -290,11 +300,15 @@ public class CadastroView extends javax.swing.JFrame {
         jScrollPane6.setViewportView(UserTable);
         if (UserTable.getColumnModel().getColumnCount() > 0) {
             UserTable.getColumnModel().getColumn(0).setPreferredWidth(30);
+            UserTable.getColumnModel().getColumn(0).setHeaderValue("ID");
             UserTable.getColumnModel().getColumn(1).setPreferredWidth(100);
+            UserTable.getColumnModel().getColumn(1).setHeaderValue("Nome");
             UserTable.getColumnModel().getColumn(2).setPreferredWidth(100);
+            UserTable.getColumnModel().getColumn(2).setHeaderValue("Email");
             UserTable.getColumnModel().getColumn(3).setPreferredWidth(100);
             UserTable.getColumnModel().getColumn(4).setPreferredWidth(100);
             UserTable.getColumnModel().getColumn(5).setPreferredWidth(100);
+            UserTable.getColumnModel().getColumn(7).setHeaderValue("Estado");
         }
 
         PanelUser.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Dados"));
@@ -496,112 +510,200 @@ public class CadastroView extends javax.swing.JFrame {
 
         TabbedPanel.addTab("Usuarios", UserPanel);
 
-        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Dados"));
+        PanelCep.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Dados"));
 
-        CancelUserButton1.setText("Cancelar");
-        CancelUserButton1.addActionListener(new java.awt.event.ActionListener() {
+        CancelCepButton.setText("Cancelar");
+        CancelCepButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CancelUserButton1ActionPerformed(evt);
+                CancelCepButtonActionPerformed(evt);
             }
         });
 
         CEPCepLabel.setText("CEP:");
 
-        CityUserLabel1.setText("Cidade:");
+        CityCepLabel.setText("Cidade:");
 
-        CityUserText1.addActionListener(new java.awt.event.ActionListener() {
+        CityCepText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CityUserText1ActionPerformed(evt);
+                CityCepTextActionPerformed(evt);
             }
         });
 
-        UFUserLabel1.setText("UF:");
+        UFCepLabel.setText("UF:");
 
-        UFUserText1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione um estado", "RO", "AC", "AM", "RR", "PA", "AP", "TO", "MA", "PI", "CE", "RN", "PB", "PE", "AL", "SE", "BA", "MG", "ES", "RJ", "SP", "PR", "SC", "RS", "MS", "MT", "GO", "DF" }));
+        UFCepText.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione um estado", "RO", "AC", "AM", "RR", "PA", "AP", "TO", "MA", "PI", "CE", "RN", "PB", "PE", "AL", "SE", "BA", "MG", "ES", "RJ", "SP", "PR", "SC", "RS", "MS", "MT", "GO", "DF" }));
 
-        DistrictUserLabel1.setText("Bairro:");
+        DistrictCepLabel.setText("Bairro:");
 
-        StreetUserLabel1.setText("Rua:");
+        StreetCepLabel.setText("Rua:");
 
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
+        javax.swing.GroupLayout PanelCepLayout = new javax.swing.GroupLayout(PanelCep);
+        PanelCep.setLayout(PanelCepLayout);
+        PanelCepLayout.setHorizontalGroup(
+            PanelCepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelCepLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGroup(PanelCepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelCepLayout.createSequentialGroup()
                         .addComponent(CEPCepLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(CEPCepText, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(DistrictUserLabel1)
+                        .addComponent(DistrictCepLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(DistrictUserText1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DistrictCepText, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(StreetUserLabel1)
+                        .addComponent(StreetCepLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(StreetUserText1, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                        .addComponent(StreetCepText)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(CityUserLabel1)
+                        .addComponent(CityCepLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(CityUserText1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addComponent(UFUserLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CityCepText, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelCepLayout.createSequentialGroup()
+                        .addGroup(PanelCepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelCepLayout.createSequentialGroup()
+                                .addComponent(UFCepLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(UFUserText1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addComponent(UFCepText, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PanelCepLayout.createSequentialGroup()
                                 .addGap(258, 258, 258)
-                                .addComponent(CancelUserButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(CancelCepButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
+        PanelCepLayout.setVerticalGroup(
+            PanelCepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelCepLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PanelCepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CEPCepLabel)
                     .addComponent(CEPCepText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CityUserLabel1)
-                    .addComponent(CityUserText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DistrictUserText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DistrictUserLabel1)
-                    .addComponent(StreetUserText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(StreetUserLabel1))
+                    .addComponent(CityCepLabel)
+                    .addComponent(CityCepText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DistrictCepText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DistrictCepLabel)
+                    .addComponent(StreetCepText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(StreetCepLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(UFUserLabel1)
-                    .addComponent(UFUserText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(PanelCepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(UFCepLabel)
+                    .addComponent(UFCepText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(CancelUserButton1)
+                .addComponent(CancelCepButton)
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+        NewCepButton.setText("Novo");
+        NewCepButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NewCepButtonActionPerformed(evt);
+            }
+        });
+
+        EditCepButton.setText("Editar");
+        EditCepButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditCepButtonActionPerformed(evt);
+            }
+        });
+
+        DelCepButton.setText("Excluir");
+        DelCepButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DelCepButtonActionPerformed(evt);
+            }
+        });
+
+        SearchCepText.setToolTipText("Buscar um CEP");
+        SearchCepText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                SearchCepTextKeyPressed(evt);
+            }
+        });
+
+        SearchCepButton.setText("Buscar");
+        SearchCepButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchCepButtonActionPerformed(evt);
+            }
+        });
+
+        CepTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "CEP", "Bairro", "Rua", "Cidade", "UF"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        CepTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CepTableMouseClicked(evt);
+            }
+        });
+        jScrollPane7.setViewportView(CepTable);
+        if (CepTable.getColumnModel().getColumnCount() > 0) {
+            CepTable.getColumnModel().getColumn(1).setPreferredWidth(100);
+            CepTable.getColumnModel().getColumn(2).setPreferredWidth(100);
+            CepTable.getColumnModel().getColumn(3).setPreferredWidth(100);
+        }
+
+        javax.swing.GroupLayout CepPanelLayout = new javax.swing.GroupLayout(CepPanel);
+        CepPanel.setLayout(CepPanelLayout);
+        CepPanelLayout.setHorizontalGroup(
+            CepPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CepPanelLayout.createSequentialGroup()
+                .addContainerGap(30, Short.MAX_VALUE)
+                .addComponent(NewCepButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(EditCepButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(DelCepButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(SearchCepText, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(SearchCepButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
+            .addComponent(jScrollPane7)
+            .addComponent(PanelCep, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        CepPanelLayout.setVerticalGroup(
+            CepPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CepPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(258, Short.MAX_VALUE))
+                .addComponent(PanelCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(CepPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NewCepButton)
+                    .addComponent(EditCepButton)
+                    .addComponent(DelCepButton)
+                    .addComponent(SearchCepText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SearchCepButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        TabbedPanel.addTab("Cep", jPanel1);
+        TabbedPanel.addTab("Cep", CepPanel);
 
         HelloLabel.setText("Olá");
 
-        AppBar.setBackground(new java.awt.Color(0, 0, 0));
+        AppBar.setBackground(new java.awt.Color(211, 211, 211));
         AppBar.setToolTipText("");
 
         OptionsButtonBar.setText("Opções");
@@ -926,13 +1028,13 @@ public class CadastroView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_EmailUserTextActionPerformed
 
-    private void CancelUserButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelUserButton1ActionPerformed
+    private void CancelCepButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelCepButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_CancelUserButton1ActionPerformed
+    }//GEN-LAST:event_CancelCepButtonActionPerformed
 
-    private void CityUserText1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CityUserText1ActionPerformed
+    private void CityCepTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CityCepTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_CityUserText1ActionPerformed
+    }//GEN-LAST:event_CityCepTextActionPerformed
 
     private void DarkTheme(){
         //Panel
@@ -941,10 +1043,14 @@ public class CadastroView extends javax.swing.JFrame {
         TabbedPanel.setBackground(Color.black);
         ProdPanel.setBackground(Color.black);
         UserPanel.setBackground(Color.black);
+        CepPanel.setBackground(Color.black);
         PanelProd.setBackground(Color.black);
         PanelUser.setBackground(Color.black);
         PanelUser.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Dados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Liberation Sans", 0, 15), new java.awt.Color(255, 255, 255))); // NOI18N
         PanelProd.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Dados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Liberation Sans", 0, 15), new java.awt.Color(255, 255, 255))); // NOI18N
+        PanelCep.setBackground(Color.black);
+        PanelCep.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "Dados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Liberation Sans", 0, 15), new java.awt.Color(255, 255, 255))); // NOI18N
+        
         //Produtos Dark Theme
         QtdProdLabel.setForeground(Color.white);
         QtdProdText.setBackground(Color.black);
@@ -1019,6 +1125,44 @@ public class CadastroView extends javax.swing.JFrame {
         SearchUserText.setForeground(Color.white);
         SearchUserButton.setBackground(Color.black);
         SearchUserButton.setForeground(Color.white);
+        
+        //Cep Dark Theme
+        CEPCepLabel.setForeground(Color.white);
+        CEPCepText.setBackground(Color.black);
+        CEPCepText.setForeground(Color.white);
+
+        DistrictCepText.setForeground(Color.white);
+        DistrictCepText.setBackground(Color.black);
+        DistrictCepText.setForeground(Color.white);
+
+        StreetCepLabel.setForeground(Color.white);
+        StreetCepText.setBackground(Color.black);
+        StreetCepText.setForeground(Color.white);
+
+        CityCepLabel.setForeground(Color.white);
+        CityCepText.setBackground(Color.black);
+        CityCepText.setForeground(Color.white);
+
+        UFCepLabel.setForeground(Color.white);
+        //UFCepText.setBackground(Color.black);
+        UFCepText.setForeground(Color.white);
+
+        CancelCepButton.setBackground(Color.black);
+        CancelCepButton.setForeground(Color.white);
+
+        NewCepButton.setBackground(Color.black);
+        NewCepButton.setForeground(Color.white);
+
+        EditCepButton.setBackground(Color.black);
+        EditCepButton.setForeground(Color.white);
+
+        DelCepButton.setBackground(Color.black);
+        DelCepButton.setForeground(Color.white);
+
+        SearchCepText.setBackground(Color.black);
+        SearchCepText.setForeground(Color.white);
+        SearchCepButton.setBackground(Color.black);
+        SearchCepButton.setForeground(Color.white);
     }
     
     private void WhiteTheme(){
@@ -1028,10 +1172,14 @@ public class CadastroView extends javax.swing.JFrame {
         TabbedPanel.setBackground(Color.white);
         ProdPanel.setBackground(Color.white);
         UserPanel.setBackground(Color.white);
+        CepPanel.setBackground(Color.white);
         PanelProd.setBackground(Color.white);
         PanelUser.setBackground(Color.white);
         PanelUser.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Dados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Liberation Sans", 0, 15), new java.awt.Color(0, 0, 0))); // NOI18N
         PanelProd.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Dados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Liberation Sans", 0, 15), new java.awt.Color(0, 0, 0))); // NOI18N
+        PanelCep.setBackground(Color.white);
+        PanelCep.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Dados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Liberation Sans", 0, 15), new java.awt.Color(0, 0, 0))); // NOI18N
+        
         //Produtos White Theme
         QtdProdLabel.setForeground(Color.black);
         QtdProdText.setBackground(Color.white);
@@ -1106,6 +1254,44 @@ public class CadastroView extends javax.swing.JFrame {
         SearchUserText.setForeground(Color.black);
         SearchUserButton.setBackground(Color.white);
         SearchUserButton.setForeground(Color.black);
+        
+        //Cep white theme
+        CEPCepLabel.setForeground(Color.black);
+        CEPCepText.setBackground(Color.white);
+        CEPCepText.setForeground(Color.black);
+
+        DistrictCepText.setForeground(Color.black);
+        DistrictCepText.setBackground(Color.white);
+        DistrictCepText.setForeground(Color.black);
+
+        StreetCepLabel.setForeground(Color.black);
+        StreetCepText.setBackground(Color.white);
+        StreetCepText.setForeground(Color.black);
+
+        CityCepLabel.setForeground(Color.black);
+        CityCepText.setBackground(Color.white);
+        CityCepText.setForeground(Color.black);
+
+        UFCepLabel.setForeground(Color.black);
+        //UFCepText.setBackground(Color.white);
+        UFCepText.setForeground(Color.black);
+
+        CancelCepButton.setBackground(Color.white);
+        CancelCepButton.setForeground(Color.black);
+
+        NewCepButton.setBackground(Color.white);
+        NewCepButton.setForeground(Color.black);
+
+        EditCepButton.setBackground(Color.white);
+        EditCepButton.setForeground(Color.black);
+
+        DelCepButton.setBackground(Color.white);
+        DelCepButton.setForeground(Color.black);
+
+        SearchCepText.setBackground(Color.white);
+        SearchCepText.setForeground(Color.black);
+        SearchCepButton.setBackground(Color.white);
+        SearchCepButton.setForeground(Color.black);
     }
     
     private void CheckDarkThemeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckDarkThemeActionPerformed
@@ -1125,6 +1311,114 @@ public class CadastroView extends javax.swing.JFrame {
             this.WhiteTheme();
         }
     }//GEN-LAST:event_CheckWhiteThemeActionPerformed
+
+    private void NewCepButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewCepButtonActionPerformed
+        //Create Usuario
+        Cep cep = new Cep();
+        CepDAO cepDao = new CepDAO();
+
+        if(!CEPCepText.getText().trim().isEmpty() && !CityCepText.getText().trim().isEmpty() && !"Selecione um estado".equals(UFCepText.getSelectedItem().toString())){
+            cep.setCep(CEPCepText.getText());
+            cep.setBairro(DistrictCepText.getText());
+            cep.setRua(StreetCepText.getText());
+            cep.setCidade(CityCepText.getText());
+            cep.setUf(UFCepText.getSelectedItem().toString());
+
+            cepDao.createCep(cep);
+
+            //Limpar campos apos cadastro
+            CEPCepText.setText("");
+            DistrictCepText.setText("");
+            StreetCepText.setText("");
+            CityCepText.setText("");
+
+            //Adicionar novo Cep a tabela
+            readCepTable();
+        } else {
+
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+
+        }
+    }//GEN-LAST:event_NewCepButtonActionPerformed
+
+    private void EditCepButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditCepButtonActionPerformed
+       if (CepTable.getSelectedRow() != -1) {
+
+            //Update Usuario
+            Cep cep = new Cep();
+            CepDAO cepDao = new CepDAO();
+
+            cep.setCep(CEPCepText.getText());
+            cep.setBairro(DistrictCepText.getText());
+            cep.setRua(StreetCepText.getText());
+            cep.setCidade(CityCepText.getText());
+            cep.setUf(UFCepText.getSelectedItem().toString());
+            cep.setId((int) CepTable.getValueAt(CepTable.getSelectedRow(), 0));
+
+            cepDao.updateCep(cep);
+
+            //Limpar campos apos atualização dos dados
+            CEPCepText.setText("");
+            DistrictCepText.setText("");
+            StreetCepText.setText("");
+            CityCepText.setText("");
+
+            //Atualiza tabela
+            readCepTable();
+
+        }
+    }//GEN-LAST:event_EditCepButtonActionPerformed
+
+    private void DelCepButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelCepButtonActionPerformed
+        if (CepTable.getSelectedRow() != -1) {
+
+            //Delete Cep
+            Cep cep = new Cep();
+            CepDAO cepDao = new CepDAO();
+
+            cep.setId((int) CepTable.getValueAt(CepTable.getSelectedRow(), 0));
+
+            cepDao.deleteCep(cep);
+
+            //Limpar campos apos exclusão dos dados
+            CEPCepText.setText("");
+            DistrictCepText.setText("");
+            StreetCepText.setText("");
+            CityCepText.setText("");
+
+            //Atualiza tabela
+            readCepTable();
+
+        } else {
+
+            JOptionPane.showMessageDialog(null, "Selecione um CEP para ser excluido!");
+
+        }
+    }//GEN-LAST:event_DelCepButtonActionPerformed
+
+    private void SearchCepTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchCepTextKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+
+            readSearchCepTable(SearchCepText.getText());
+
+        }
+    }//GEN-LAST:event_SearchCepTextKeyPressed
+
+    private void SearchCepButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchCepButtonActionPerformed
+       readSearchCepTable(SearchCepText.getText());
+    }//GEN-LAST:event_SearchCepButtonActionPerformed
+
+    private void CepTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CepTableMouseClicked
+        //Transfere os dados da linha para a linha
+        if (CepTable.getSelectedRow() != -1) {
+
+            CEPCepText.setText(CepTable.getValueAt(CepTable.getSelectedRow(), 1).toString());
+            DistrictCepText.setText(CepTable.getValueAt(CepTable.getSelectedRow(), 2).toString());
+            StreetCepText.setText(CepTable.getValueAt(CepTable.getSelectedRow(), 3).toString());
+            CityCepText.setText(CepTable.getValueAt(CepTable.getSelectedRow(), 4).toString());
+            UFCepText.setSelectedItem(CepTable.getValueAt(CepTable.getSelectedRow(), 5).toString());
+        }
+    }//GEN-LAST:event_CepTableMouseClicked
 
     public static String maxlength(String str, int maxValue){
         String value = str;
@@ -1197,6 +1491,46 @@ public class CadastroView extends javax.swing.JFrame {
 
     }
     
+    public void readCepTable() {
+
+        DefaultTableModel modelo = (DefaultTableModel) CepTable.getModel();
+        modelo.setNumRows(0);
+
+        CepDAO cepDao = new CepDAO();
+
+        cepDao.listCep().forEach(c -> {
+            modelo.addRow(new Object[]{
+                c.getId(),
+                c.getCep(),
+                c.getBairro(),
+                c.getRua(),
+                c.getCidade(),
+                c.getUf()
+            });
+        });
+
+    }
+
+    public void readSearchCepTable(String cep) {
+
+        DefaultTableModel modelo = (DefaultTableModel) CepTable.getModel();
+        modelo.setNumRows(0);
+
+        CepDAO cepDao = new CepDAO();
+
+        cepDao.searchCep(cep).forEach(c -> {
+            modelo.addRow(new Object[]{
+                c.getId(),
+                c.getCep(),
+                c.getBairro(),
+                c.getRua(),
+                c.getCidade(),
+                c.getUf()
+            });
+        });
+
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -1239,23 +1573,27 @@ public class CadastroView extends javax.swing.JFrame {
     private javax.swing.JTextField CEPCepText;
     private javax.swing.JLabel CEPUserLabel;
     private javax.swing.JTextField CEPUserText;
+    private javax.swing.JButton CancelCepButton;
     private javax.swing.JButton CancelProdButton;
     private javax.swing.JButton CancelUserButton;
-    private javax.swing.JButton CancelUserButton1;
+    private javax.swing.JPanel CepPanel;
+    private javax.swing.JTable CepTable;
     private javax.swing.JCheckBoxMenuItem CheckDarkTheme;
     private javax.swing.JCheckBoxMenuItem CheckWhiteTheme;
+    private javax.swing.JLabel CityCepLabel;
+    private javax.swing.JTextField CityCepText;
     private javax.swing.JLabel CityUserLabel;
-    private javax.swing.JLabel CityUserLabel1;
     private javax.swing.JTextField CityUserText;
-    private javax.swing.JTextField CityUserText1;
+    private javax.swing.JButton DelCepButton;
     private javax.swing.JButton DelProdButton;
     private javax.swing.JButton DelUserButton;
     private javax.swing.JLabel DescProdLabel;
     private javax.swing.JTextField DescProdText;
+    private javax.swing.JLabel DistrictCepLabel;
+    private javax.swing.JTextField DistrictCepText;
     private javax.swing.JLabel DistrictUserLabel;
-    private javax.swing.JLabel DistrictUserLabel1;
     private javax.swing.JTextField DistrictUserText;
-    private javax.swing.JTextField DistrictUserText1;
+    private javax.swing.JButton EditCepButton;
     private javax.swing.JButton EditProdButton;
     private javax.swing.JButton EditUserButton;
     private javax.swing.JLabel EmailUserLabel;
@@ -1265,9 +1603,11 @@ public class CadastroView extends javax.swing.JFrame {
     public javax.swing.JLabel NameLabel;
     private javax.swing.JLabel NameUserLabel;
     private javax.swing.JTextField NameUserText;
+    private javax.swing.JButton NewCepButton;
     private javax.swing.JButton NewProdButton;
     private javax.swing.JButton NewUserButton;
     private javax.swing.JMenu OptionsButtonBar;
+    private javax.swing.JPanel PanelCep;
     private javax.swing.JPanel PanelProd;
     private javax.swing.JPanel PanelUser;
     private javax.swing.JLabel PassUserLabel;
@@ -1278,23 +1618,24 @@ public class CadastroView extends javax.swing.JFrame {
     private javax.swing.JTable ProdTable;
     private javax.swing.JLabel QtdProdLabel;
     private javax.swing.JTextField QtdProdText;
+    private javax.swing.JButton SearchCepButton;
+    private javax.swing.JTextField SearchCepText;
     private javax.swing.JButton SearchUserButton;
     private javax.swing.JTextField SearchUserText;
+    private javax.swing.JLabel StreetCepLabel;
+    private javax.swing.JTextField StreetCepText;
     private javax.swing.JLabel StreetUserLabel;
-    private javax.swing.JLabel StreetUserLabel1;
     private javax.swing.JTextField StreetUserText;
-    private javax.swing.JTextField StreetUserText1;
     private javax.swing.JTabbedPane TabbedPanel;
+    private javax.swing.JLabel UFCepLabel;
+    private javax.swing.JComboBox<String> UFCepText;
     private javax.swing.JLabel UFUserLabel;
-    private javax.swing.JLabel UFUserLabel1;
     private javax.swing.JComboBox<String> UFUserText;
-    private javax.swing.JComboBox<String> UFUserText1;
     private javax.swing.JPanel UserPanel;
     private javax.swing.JTable UserTable;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     // End of variables declaration//GEN-END:variables
 }

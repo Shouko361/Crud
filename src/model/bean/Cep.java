@@ -10,11 +10,20 @@ package model.bean;
  */
 public class Cep {
     
+    private int id;
     private String cep;
     private String bairro;
     private String rua;
     private String cidade;
     private String uf;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getCep() {
         return cep;
@@ -55,7 +64,6 @@ public class Cep {
     public void setUf(String uf) {
         this.uf = uf;
     }
-    
-    
+
     
 }

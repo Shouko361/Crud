@@ -122,6 +122,8 @@ public class LoginView extends javax.swing.JFrame {
         
         if(userDAO.checkLogin(EmailLoginText.getText(), PassLoginText.getText())){
             this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Dados incorretos!");
         }
         
     }//GEN-LAST:event_LoginButtonActionPerformed
@@ -135,16 +137,6 @@ public class LoginView extends javax.swing.JFrame {
             if(userDAO.checkLogin(EmailLoginText.getText(), PassLoginText.getText())){
                 this.dispose();
             }
-////            if(){
-//            
-//                new CadastroView().setVisible(true);
-//                this.dispose();
-
-//            }else{
-
-//                
-
-//            }
             
         }
         
