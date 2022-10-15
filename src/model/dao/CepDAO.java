@@ -41,7 +41,7 @@ public class CepDAO {
         
         } catch (SQLException e) {
             
-            JOptionPane.showMessageDialog(null, "Erro ao salvar o CEP!");
+            JOptionPane.showMessageDialog(null, "Erro ao salvar o CEP!\nJá existe este CEP cadastrado!");
         
         } finally {
             

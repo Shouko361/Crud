@@ -30,7 +30,7 @@ public class UsuarioDAO {
         
         try {
         
-            stmt = con.prepareStatement("INSERT INTO user (name, email, password, cep, bairro, rua, cidade, estado) VALUES (?,?,?,?,?,?,?,?)");
+            stmt = con.prepareStatement("INSERT INTO usuario (name, email, password, cep, bairro, rua, cidade, estado) VALUES (?,?,?,?,?,?,?,?)");
             stmt.setString(1, u.getName());
             stmt.setString(2, u.getEmail());
             stmt.setString(3, u.getPassword());
@@ -62,8 +62,8 @@ public class UsuarioDAO {
         PreparedStatement stmt = null;
         
         try {
-        
-            stmt = con.prepareStatement("UPDATE user SET name = ?, email = ?, cep = ?, bairro = ?, rua = ?, cidade = ? , estado = ?, WHERE id = ?");
+            
+            stmt = con.prepareStatement("UPDATE usuario SET name = ?, email = ?, cep = ?, bairro = ?, rua = ?, cidade = ? , estado = ?, WHERE id = ?");
             stmt.setString(1, u.getName());
             stmt.setString(2, u.getEmail());
             stmt.setString(3, u.getCep());
@@ -96,7 +96,7 @@ public class UsuarioDAO {
         
         try {
         
-            stmt = con.prepareStatement("DELETE FROM user WHERE id = ?");
+            stmt = con.prepareStatement("DELETE FROM usuario WHERE id = ?");
             stmt.setInt(1, u.getId());            
             
             stmt.executeUpdate();
@@ -125,7 +125,7 @@ public class UsuarioDAO {
         
         try {
             
-            stmt = con.prepareStatement("SELECT * FROM user WHERE email LIKE ?");
+            stmt = con.prepareStatement("SELECT * FROM usuario WHERE email LIKE ?");
             stmt.setString(1, "%"+email+"%");
             rs = stmt.executeQuery();
             
@@ -170,7 +170,7 @@ public class UsuarioDAO {
         
         try {
             
-            stmt = con.prepareStatement("SELECT * FROM user WHERE name = ? and password = ? OR email = ? and password = ?");
+            stmt = con.prepareStatement("SELECT * FROM usuario WHERE name = ? and password = ? OR email = ? and password = ?");
             stmt.setString(1, email);
             stmt.setString(2, pass);
             stmt.setString(3, email);
@@ -210,7 +210,7 @@ public class UsuarioDAO {
         
         try {
             
-            stmt = con.prepareStatement("SELECT * FROM user");
+            stmt = con.prepareStatement("SELECT * FROM usuario");
             rs = stmt.executeQuery();
             
             while(rs.next()){
